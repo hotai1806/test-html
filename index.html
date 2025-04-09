@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALMOND&BLUEBERRY INC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Base styling */
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFD166;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --sheep-color: #fff;
+            --sheep-shadow-color: #eee;
+            --box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
+            --border: 4px solid black;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pixelated', 'Courier New', monospace;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @font-face {
+            font-family: 'Pixelated';
+            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        }
+
+        body {
+            background-color: #a1d568;
+            color: var(--dark);
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Neubrutalism Style */
+        .neubrutalism-box {
+            background-color: white;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .neubrutalism-box:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .section-title {
+            display: inline-block;
+            background-color: var(--accent);
+            border: var(--border);
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+            transform: rotate(-2deg);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .tilt-wrapper {
+            perspective: 1000px;
+        }
+
+        .tilt-element {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loading-bar-container {
+            width: 300px;
+            height: 30px;
+            border: var(--border);
+            margin-top: 200px;
+            position: relative;
+            background-color: white;
+        }
+
+        #loading-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary);
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 48px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0 var(--accent);
+            transform: rotate(-1deg);
+            display: inline-block;
+            background-color: white;
+            padding: 15px 30px;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            background-color: white;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        /* Password Section */
+        #password-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .password-input {
+            padding: 12px 20px;
+            border: var(--border);
+            margin-right: 10px;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+            font-size: 16px;
+            width: 300px;
+        }
+
+        .submit-btn {
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: var(--border);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .hint {
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid var(--dark);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--dark) }
+        }
+
+        /* Sheep Animation */
+        /* variables for sheep */
+        .sheep {
+            position: relative;
+            margin: auto;
+            animation: sheep-walking-cycle linear 20s infinite;
+        }
+
+        .legs {
+            position: absolute;
+            top: 180px;
+            left: 100px;
+            z-index: 0;
+        }
+
+        .leg {
+            background: #000;
+            width: 18px;
+            height: 55px;
+            border-radius: 7px;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .transform-origin-top-left-corner {
+            transform-origin: top left;
+        }
+
+        .leg-1 {
+            transform: rotate(10deg);
+            left: 20px;
+            animation-name: walk-leg-front-cycle;
+        }
+        .leg-2 {
+            transform: rotate(-10deg);
+            left: 40px;
+            background: #444;
+            z-index: 0;
+            animation-name: walk-leg-back-cycle;
+        }
+        .leg-3 {
+            transform: rotate(10deg);
+            left: 95px;
+            animation-name: walk-leg-front-cycle;
+        }
+        .leg-4 {
+            transform: rotate(-10deg);
+            left: 120px;
+            background: #444;
+            z-index: 0;
+            animation-name: walk-leg-back-cycle;
+        }
+
+        .piece-of-wool {
+            position: absolute;
+            background: var(--sheep-color);
+            z-index: 2;
+        }
+        .wool-shadowlayer .piece-of-wool {
+            background: var(--sheep-shadow-color);
+            z-index: 1;
+            margin-bottom: -8px;
+        }
+
+        .wool {
+            width: 160px;
+            height: 140px;
+            position: absolute;
+            left: 90px;
+            top: 50px;
+            z-index: 1;
+        }
+
+        .piece-of-wool-1 {
+            width: 160px;
+            height: 140px;
+            border-radius: 160px / 140px;
+            position: relative;
+            z-index: 0;
+        }
+        .piece-of-wool-2 {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            top: 0;
+            left: -5px;
+        }
+        .piece-of-wool-3 {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            top: -20px;
+            left: 75px;
+        }
+        .piece-of-wool-4 {
+            width: 90px;
+            height: 90px;
+            border-radius: 45px;
+            top: -15px;
+            left: 25px;
+        }
+        .piece-of-wool-5 {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            bottom: -6px;
+            left: 40px;
+        }
+        .piece-of-wool-6 {
+            width: 90px;
+            height: 90px;
+            border-radius: 45px;
+            bottom: -2px;
+            left: 50px;
+        }
+        .piece-of-wool-7 {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            bottom: 0;
+            left: 0;
+        }
+        .piece-of-wool-8 {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            bottom: 10px;
+            left: 100px;
+        }
+        .piece-of-wool-9 {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            bottom: 35px;
+            left: 134px;
+        }
+        .piece-of-wool-10 {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            top: 0;
+            left: 106px;
+        }
+
+        .head {
+            position: absolute;
+            left: 32px;
+            top: 30px;
+            z-index: 3;
+            width: 100px;
+            height: 130px;
+            animation: head-cycle 20s infinite alternate;
+        }
+
+        .head-face, .head-shadow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--sheep-color);
+            width: 100px;
+            height: 130px;
+            border-radius: 95px / 130px;
+            z-index: 1;
+        }
+        .head-shadow {
+            background: var(--sheep-shadow-color);
+            margin: 3px 0 0 5px;
+            z-index: 0;
+        }
+        .head-face-front {
+            width: 85px;
+            height: 110px;
+            border-radius: 42.5px / 55px;
+            position: absolute;
+            left: 50%;
+            margin-left: -42.5px;
+            top: 0;
+            background: #fff;
+            z-index: 3;
+        }
+        .ear {
+            background: #000;
+            width: 50px;
+            height: 60px;
+            border-radius: 50px;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+            position: absolute;
+            z-index: 2;
+            left: 15px;
+            top: 15px;
+        }
+
+        .ear.ear-1 {
+            transform: rotate(75deg);
+            animation: ear-1-cycle 20s infinite;
+        }
+        .ear.ear-2 {
+            transform: rotate(5deg);
+            left: 85px;
+            animation: ear-2-cycle 20s infinite;
+        }
+        .ear.ear-2.ear-shadow {
+            background: var(--sheep-shadow-color);
+            margin: 6px 0 0 6px;
+            z-index: 0;
+        }
+        .eye {
+            width: 15px;
+            height: 22.5px;
+            border-radius: 7.5px / 11.25px;
+            background: #000;
+            position: absolute;
+            top: 35px;
+            z-index: 5;
+            animation: eye-blink-cycle .3s 5s 2 alternate;
+        }
+
+        .glow {
+            width: 5px;
+            height: 7.5px;
+            border-radius: 2.5px / 3.75px;
+            background: #fff;
+            position: absolute;
+            left: 47%;
+            top: 20%;
+            animation: eye-blink-glow-cycle .3s 5s 2 alternate;
+        }
+        .eye.eye-1 {
+            left: 30px;
+        }
+        .eye.eye-2 {
+            right: 30px;
+        }
+        .wool-head {
+            width: 100px;
+            position: absolute;
+            left: 0;
+            top: -4px;
+            z-index: 4;
+        }
+
+        .wool-head .piece-of-wool-1 {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            top: 0;
+            left: 5px;
+        }
+        .wool-head .piece-of-wool-2 {
+            width: 35px;
+            height: 35px;
+            border-radius: 17.5px;
+            top: -10px;
+            left: 25px;
+        }
+        .wool-head .piece-of-wool-3 {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            top: 0;
+            left: 55px;
+        }
+        .wool-head .wool-shadowlayer .piece-of-wool {
+            margin-top: 4px;
+            margin-left: 4px;
+            margin-bottom: 0;
+        }
+
+        /* sheep animations */
+        @keyframes walk-leg-back-cycle {
+            0% { transform: rotate(-10deg); }
+            100% { transform: rotate(10deg) translateX(-20px); }
+        }
+        @keyframes walk-leg-front-cycle {
+            0% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg) translateX(20px); }
+        }
+
+        @keyframes head-cycle {
+            40% { transform: rotate(10deg); }
+            100% { transform: rotate(-5deg); }
+        }
+        @keyframes ear-1-cycle {
+            0%, 10%, 20%, 40%, 50%, 100% { transform: rotate(75deg); }
+            5%, 45% { transform: rotate(85deg); }
+            15% { transform: rotate(80deg); }
+        }
+
+        @keyframes ear-2-cycle {
+            0%, 10%, 20%, 30%, 40%, 50%, 70%, 80%, 100% { transform: rotate(5deg); }
+            15%, 75% { transform: rotate(-5deg); }
+            45% { transform: rotate(0deg); }
+        }
+
+        @keyframes sheep-walking-cycle {
+            0% {
+                transform: translateX(650px);
+            }
+            100% {
+                transform: translateX(50px);
+            }
+        }
+        @keyframes eye-blink-cycle {
+            100% {
+                height: 2px;
+                border-radius: 0;
+                margin-top: 5px;
+            }
+        }
+        @keyframes eye-blink-glow-cycle {
+            100% {
+                height: 0;
+                border-radius: 0
+            }
+        }
+
+        /* Interactive Lily Flower */
+        .lily-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .lily {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .lily-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .petal {
+            position: absolute;
+            width: 50px;
+            height: 80px;
+            background-color: #FFC0CB;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform-origin: bottom center;
+            transition: all 0.5s ease;
+        }
+
+        .lily.closed .petal {
+            transform: rotateY(0deg) rotateZ(0deg) translateY(-20px);
+        }
+
+        .lily .petal:nth-child(1) { transform: rotateZ(0deg) translateY(-40px) scale(0.1); }
+        .lily .petal:nth-child(2) { transform: rotateZ(72deg) translateY(-40px) scale(0.1); }
+        .lily .petal:nth-child(3) { transform: rotateZ(144deg) translateY(-40px) scale(0.1); }
+        .lily .petal:nth-child(4) { transform: rotateZ(216deg) translateY(-40px) scale(0.1); }
+        .lily .petal:nth-child(5) { transform: rotateZ(288deg) translateY(-40px) scale(0.1); }
+
+        .lily.open .petal:nth-child(1) { transform: rotateZ(0deg) translateY(-40px) scale(1); }
+        .lily.open .petal:nth-child(2) { transform: rotateZ(72deg) translateY(-40px) scale(1); }
+        .lily.open .petal:nth-child(3) { transform: rotateZ(144deg) translateY(-40px) scale(1); }
+        .lily.open .petal:nth-child(4) { transform: rotateZ(216deg) translateY(-40px) scale(1); }
+        .lily.open .petal:nth-child(5) { transform: rotateZ(288deg) translateY(-40px) scale(1); }
+
+        /* Polaroid Gallery */
+        .polaroid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .polaroid {
+            width: 250px;
+            height: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            padding: 15px 15px 60px 15px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            cursor: pointer;
+        }
+
+        .polaroid-front, .polaroid-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .polaroid-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+
+        .polaroid.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--dark);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: var(--accent);
+            border: 4px solid var(--dark);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--dark);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--dark);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--dark);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--dark) transparent transparent;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Love Letter Envelope */
+        .envelope-container {
+            width: 300px;
+            height: 200px;
+            margin: 30px auto;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+        }
+
+        .envelope.open {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-front, .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .envelope-front {
+            background-color: #F5A623;
+            border: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotateX(0deg);
+        }
+
+        .envelope-back {
+            background-color: white;
+            border: var(--border);
+            transform: rotateX(180deg);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .envelope-heart {
+            color: red;
+            font-size: 50px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            animation: fall 5s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Numbers Section */
+        .numbers-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .number-card {
+            width: 180px;
+            height: 180px;
+            background-color: var(--accent);
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .number-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .number-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .number-label {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Admin Section */
+        #admin-password-section {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        #admin-controls {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .admin-control {
+            margin-bottom: 15px;
+        }
+
+        .admin-control label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .admin-control input {
+            padding: 8px 12px;
+            border: var(--border);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .counter-btn {
+            padding: 5px 10px;
+            background-color: var(--secondary);
+            border: 2px solid black;
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+        }
+
+        /* Upcoming Activities */
+        .upcoming-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: var(--border);
+        }
+
+        .upcoming-table th, .upcoming-table td {
+            padding: 12px;
+            text-align: left;
+            border: 2px solid black;
+        }
+
+        .upcoming-table th {
+            background-color: var(--accent);
+        }
+
+        .upcoming-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .reload-btn {
+            padding: 8px 15px;
+            background-color: var(--secondary);
+            color: white;
+            border: var(--border);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-item {
+            width: 80px;
+            height: 80px;
+            background-color: var(--secondary);
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .countdown-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .countdown-event {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Gifts Section */
+        .gift-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .gift-option {
+            width: 200px;
+            height: 200px;
+            background-color: var(--primary);
+            border: var(--border);
+            box-shadow: var(--box-
+
+box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-option:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .gift-date {
+            background-color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border: 2px solid black;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="sheep">
+            <div class="legs">
+                <div class="leg leg-1"></div>
+                <div class="leg leg-2"></div>
+                <div class="leg leg-3"></div>
+                <div class="leg leg-4"></div>
+            </div>
+            <div class="wool">
+                <div class="piece-of-wool piece-of-wool-1"></div>
+                <div class="wool-shadowlayer">
+                    <div class="piece-of-wool piece-of-wool-5"></div>
+                    <div class="piece-of-wool piece-of-wool-6"></div>
+                    <div class="piece-of-wool piece-of-wool-7"></div>
+                    <div class="piece-of-wool piece-of-wool-8"></div>
+                    <div class="piece-of-wool piece-of-wool-9"></div>
+                </div>
+                <div class="wool-toplayer">
+                    <div class="piece-of-wool piece-of-wool-2"></div>
+                    <div class="piece-of-wool piece-of-wool-3"></div>
+                    <div class="piece-of-wool piece-of-wool-4"></div>
+                    <div class="piece-of-wool piece-of-wool-5"></div>
+                    <div class="piece-of-wool piece-of-wool-6"></div>
+                    <div class="piece-of-wool piece-of-wool-7"></div>
+                    <div class="piece-of-wool piece-of-wool-8"></div>
+                    <div class="piece-of-wool piece-of-wool-9"></div>
+                    <div class="piece-of-wool piece-of-wool-10"></div>
+                </div>
+            </div>
+            <div class="head">
+                <div class="head-face-front"></div>
+                <div class="head-face"></div>
+                <div class="head-shadow"></div>
+                <div class="ear ear-1"></div>
+                <div class="ear ear-2"></div>
+                <div class="ear ear-2 ear-shadow"></div>
+                <div class="eye eye-1">
+                    <div class="glow"></div>
+                </div>
+                <div class="eye eye-2">
+                    <div class="glow"></div>
+                </div>
+                <div class="wool-head">
+                    <div class="wool-shadowlayer">
+                        <div class="piece-of-wool piece-of-wool-1"></div>
+                        <div class="piece-of-wool piece-of-wool-2"></div>
+                        <div class="piece-of-wool piece-of-wool-3"></div>
+                    </div>
+                    <div class="piece-of-wool piece-of-wool-1"></div>
+                    <div class="piece-of-wool piece-of-wool-2"></div>
+                    <div class="piece-of-wool piece-of-wool-3"></div>
+                </div>
+            </div>
+        </div>
+        <div id="loading-bar-container">
+            <div id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="main-title">ALMOND&BLUEBERRY INC</h1>
+            <h2 class="subtitle" id="day-counter">1028 Days Together - Love you <i class="fas fa-heart" style="color: red;"></i></h2>
+            <div class="tilt-wrapper">
+                <h2 class="subtitle tilt-element" id="special-day-title">Happy Birthday, My Almond! 🎉</h2>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="nav-item" id="nav-unlock" onclick="showSection('password')">
+                <i class="fas fa-lock"></i> Unlock
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-agreement" onclick="showSection('agreement')">
+                <i class="fas fa-handshake"></i> Agreement
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-special" onclick="showSection('special')">
+                <i class="fas fa-gift"></i> Today's Special
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-memories" onclick="showSection('memories')">
+                <i class="fas fa-camera"></i> Our Memories
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-activities" onclick="showSection('activities')">
+                <i class="fas fa-calendar-alt"></i> Upcoming Activities
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-nextday" onclick="showSection('nextday')">
+                <i class="fas fa-hourglass-half"></i> Next Special Day
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-gift" onclick="showSection('gift')">
+                <i class="fas fa-gift"></i> Gift
+            </a>
+            <a href="#" class="nav-item disabled" id="nav-admin" onclick="showAdminSection()">
+                <i class="fas fa-user-shield"></i> Admin
+            </a>
+        </nav>
+
+        <!-- Password Section -->
+        <section id="password-section" class="neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-lock"></i> Password Required</h2>
+            <div>
+                <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+                <button class="submit-btn" onclick="checkPassword()">Submit</button>
+            </div>
+            <p class="hint">Hint: the password is what i like the most almondplusgame</p>
+        </section>
+
+        <!-- Agreement Section -->
+        <section id="agreement-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> Our Agreement</h2>
+            <div id="agreement-content" class="typewriter-text">
+                <p>In our relationship, we've promised to:</p>
+                <ul>
+                    <li>Always communicate openly and honestly, even when it's difficult</li>
+                    <li>Support each other's dreams and goals without judgment</li>
+                    <li>Make time for each other, even when life gets busy</li>
+                    <li>Never go to sleep angry - resolve conflicts before bedtime</li>
+                    <li>Celebrate each other's victories, no matter how small</li>
+                    <li>Always remember why we fell in love in the first place</li>
+                    <li>Keep our relationship exciting by trying new things together</li>
+                    <li>Give each other space when needed, without taking offense</li>
+                    <li>Be each other's best friend and confidant</li>
+                    <li>Love each other unconditionally, through all of life's ups and downs</li>
+                </ul>
+                <p>This is our promise to each other, today and always.</p>
+            </div>
+        </section>
+
+        <!-- Today's Special Section -->
+        <section id="special-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-gift"></i> Today's Special</h2>
+            <div id="special-content" class="typewriter-text">
+                <p>My dearest Almond,</p>
+                <p>Happy Birthday to the most wonderful person in my life! Today is all about celebrating you and the incredible joy you bring into my world every single day.</p>
+                <p>From the moment you walk into a room with your beautiful smile to the way you laugh at my silly jokes, you make my heart skip a beat. Your kindness, intelligence, and compassion inspire me to be a better person.</p>
+                <p>This past year has been an amazing journey together, and I'm looking forward to many more adventures, challenges, and precious moments with you.</p>
+                <p>May this year bring you all the happiness you deserve and may all your wishes come true.</p>
+                <p>I love you more than words can express,</p>
+                <p>Your Blueberry ❤️</p>
+            </div>
+            
+            <div class="lily-container" onclick="toggleLily()">
+                <div class="lily closed">
+                    <div class="lily-center"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Memories Section -->
+        <section id="memories-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-camera"></i> Our Memories</h2>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h2>First Date</h2>
+                        <p>January 15, 2022</p>
+                        <p>We met at that little coffee shop downtown. You were wearing that blue dress that made your eyes shine even brighter.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h2>First Trip Together</h2>
+                        <p>March 20, 2022</p>
+                        <p>Our weekend getaway to the mountains. We got lost, found that amazing viewpoint, and watched the sunset together.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h2>Moving In Together</h2>
+                        <p>August 5, 2022</p>
+                        <p>The day we combined our book collections and realized we had two toasters but no microwave.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h2>First Anniversary</h2>
+                        <p>January 15, 2023</p>
+                        <p>Dinner at that fancy restaurant where the waiter thought we were celebrating our wedding anniversary.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 40px; text-align: center;">Polaroid Memories</h3>
+            <div class="polaroid-container">
+                <div class="polaroid" onclick="flipPolaroid(this)">
+                    <div class="polaroid-front">
+                        <img src="/api/placeholder/220/220" alt="Beach Vacation">
+                        <div class="polaroid-caption">Summer Beach Day</div>
+                    </div>
+                    <div class="polaroid-back">
+                        <p>Remember when we built that giant sand castle and then the tide came in? Your laugh when it all washed away still echoes in my heart.</p>
+                    </div>
+                </div>
+                <div class="polaroid" onclick="flipPolaroid(this)">
+                    <div class="polaroid-front">
+                        <img src="/api/placeholder/220/220" alt="Movie Night">
+                        <div class="polaroid-caption">Movie Marathon Night</div>
+                    </div>
+                    <div class="polaroid-back">
+                        <p>Six movies back-to-back, too much popcorn, and you still stayed awake for all of them. I fell asleep during the fifth one!</p>
+                    </div>
+                </div>
+                <div class="polaroid" onclick="flipPolaroid(this)">
+                    <div class="polaroid-front">
+                        <img src="/api/placeholder/220/220" alt="Hiking">
+                        <div class="polaroid-caption">Mountain Hike</div>
+                    </div>
+                    <div class="polaroid-back">
+                        <p>The hike was tough but the view (and company) was worth every step. You're my favorite adventure partner.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 40px; text-align: center;">Us in Numbers</h3>
+            <div class="numbers-container">
+                <div class="number-card">
+                    <div class="number-value" id="days-together">1028</div>
+                    <div class="number-label">Days Together</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">12</div>
+                    <div class="number-label">Trips Together</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">7</div>
+                    <div class="number-label">Arguments (Resolved!)</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">43</div>
+                    <div class="number-label">Movies Watched</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">15</div>
+                    <div class="number-label">Books Read</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">86</div>
+                    <div class="number-label">Exercise Sessions</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Activities Section -->
+        <section id="activities-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Activities</h2>
+            
+            <h3>Planned Trips</h3>
+            <table class="upcoming-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Destination</th>
+                        <th>Duration</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>May 20, 2025</td>
+                        <td>Beach Weekend</td>
+                        <td>3 days</td>
+                        <td>Beachfront rental booked</td>
+                    </tr>
+                    <tr>
+                        <td>July 1-15, 2025</td>
+                        <td>Europe Adventure</td>
+                        <td>2 weeks</td>
+                        <td>Paris, Rome, Barcelona</td>
+                    </tr>
+                    <tr>
+                        <td>September 10, 2025</td>
+                        <td>Mountain Cabin</td>
+                        <td>4 days</td>
+                        <td>Anniversary celebration</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="reload-btn" onclick="reloadTripsData()"><i class="fas fa-sync-alt"></i> Reload Data</button>
+            
+            <h3 style="margin-top: 30px;">Future Plans</h3>
+            <div id="plans-container">
+                <div class="neubrutalism-box" style="margin-top: 20px;">
+                    <h4>Summer Garden Project</h4>
+                    <p>Let's plant those flowers you've been talking about and create our own little garden oasis on the balcony!</p>
+                </div>
+                <div class="neubrutalism-box" style="margin-top: 20px;">
+                    <h4>Cooking Classes</h4>
+                    <p>Remember we talked about taking Italian cooking classes together? I found a great place that offers weekend sessions.</p>
+                </div>
+                <div class="neubrutalism-box" style="margin-top: 20px;">
+                    <h4>Learn To Dance</h4>
+                    <p>Ballroom dancing lessons - I promise not to step on your toes (too much)!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Special Day Section -->
+        <section id="nextday-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-hourglass-half"></i> Next Special Day</h2>
+            
+            <div class="countdown-container">
+                <div class="countdown-event">Valentine's Day</div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="countdown-days">311</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="countdown-hours">7</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="countdown-minutes">45</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="countdown-seconds">12</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="neubrutalism-box" style="margin-top: 30px;">
+                <h3>Upcoming Special Days</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> May 12, 2025 - Our Dating Anniversary</li>
+                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> July 20, 2025 - Your Mom's Birthday</li>
+                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> August 15, 2025 - Our Trip Anniversary</li>
+                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> October 31, 2025 - Halloween Party</li>
+                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> December 25, 2025 - Christmas Together</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Gift Section -->
+        <section id="gift-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-gift"></i> Gift</h2>
+            
+            <div class="gift-options">
+                <div class="gift-option" onclick="showPastGift('2023-04-09')">
+                    <div class="gift-date">April 9, 2023</div>
+                    <i class="fas fa-birthday-cake fa-3x"></i>
+                </div>
+                <div class="gift-option" onclick="showPastGift('2023-12-25')">
+                    <div class="gift-date">Dec 25, 2023</div>
+                    <i class="fas fa-holly-berry fa-3x"></i>
+                </div>
+                <div class="gift-option" onclick="showPastGift('2024-02-14')">
+                    <div class="gift-date">Feb 14, 2024</div>
+                    <i class="fas fa-heart fa-3x"></i>
+                </div>
+                <div class="gift-option" onclick="showPastGift('2024-04-09')">
+                    <div class="gift-date">April 9, 2024</div>
+                    <i class="fas fa-birthday-cake fa-3x"></i>
+                </div>
+                <div class="gift-option" onclick="showBirthdayCard()">
+                    <div class="gift-date">April 9, 2025</div>
+                    <i class="fas fa-gift fa-3x"></i>
+                </div>
+            </div>
+            
+            <div id="birthday-card" style="display: none; margin-top: 40px;">
+                <h3 style="text-align: center; margin-bottom: 20px;">Your Birthday Card</h3>
+                
+                <div class="envelope-container">
+                    <div class="envelope" onclick="toggleEnvelope()">
+                        <div class="envelope-front">
+                            <div class="envelope-heart">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="envelope-back">
+                            <p style="font-size: 18px; text-align: center;">My Dearest Almond,</p>
+                            <p style="margin-top: 10px;">On your special day, I want you to know how much you mean to me. You're my best friend, my confidant, my partner in crime, and the love of my life.</p>
+                            <p style="margin-top: 10px;">Your kindness, your humor, your intelligence, and your beautiful heart make every day brighter. I'm so grateful for all the moments we've shared, and I look forward to creating countless more memories together.</p>
+                            <p style="margin-top: 10px;">Happy Birthday, my love. May this year bring you all the joy, success, and adventure you deserve.</p>
+                            <p style="margin-top: 10px; text-align: right;">Forever yours,<br>Blueberry ❤️</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button onclick="startConfetti()" class="submit-btn">Click for a Birthday Surprise!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin-section" class="content-section neubrutalism-box">
+            <h2 class="section-title"><i class="fas fa-user-shield"></i> Admin</h2>
+            
+            <div id="admin-password-section">
+                <input type="password" id="admin-password-input" class="password-input" placeholder="Enter admin password">
+                <button class="submit-btn" onclick="checkAdminPassword()">Submit</button>
+            </div>
+            
+            <div id="admin-controls">
+                <div class="admin-control">
+                    <label for="days-together-input">Days Together:</label>
+                    <input type="number" id="days-together-input" value="1028">
+                    <div class="counter-controls">
+                        <button class="counter-btn" onclick="updateCounter('minus')">-</button>
+                        <button class="counter-btn" onclick="updateCounter('plus')">+</button>
+                        <button class="counter-btn" onclick="saveCounter()">Save</button>
+                    </div>
+                </div>
+                
+                <div class="admin-control">
+                    <label for="special-day-toggle">Show Birthday Title:</label>
+                    <input type="checkbox" id="special-day-toggle" checked onchange="toggleSpecialDay()">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <script>
+        // Loading Screen
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('loading-bar').style.width = '100%';
+            }, 100);
+            
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 1500);
+        };
+
+        // Password Check
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            if (password === 'almondplusgame') {
+                unlockContent();
+            } else {
+                alert('Incorrect password. Try again!');
+            }
+        }
+
+        function unlockContent() {
+            document.getElementById('password-section').style.display = 'none';
+            
+            // Enable all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('disabled');
+            });
+            
+            // Show agreement section
+            showSection('agreement');
+        }
+
+        // Section Navigation
+        function showSection(sectionId) {
+            // Hide all content sections
+            const contentSections = document.querySelectorAll('.content-section');
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId + '-section').classList.add('active');
+            
+            // Apply typewriter effect to the content
+            applyTypewriterEffect(sectionId + '-content');
+        }
+
+        function applyTypewriterEffect(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.width = '0';
+                setTimeout(() => {
+                    element.style.width = '100%';
+                }, 100);
+            }
+        }
+
+        // Lily Animation
+        function toggleLily() {
+            const lily = document.querySelector('.lily');
+            lily.classList.toggle('closed');
+            lily.classList.toggle('open');
+        }
+
+        // Polaroid Flip Animation
+        function flipPolaroid(polaroid) {
+            polaroid.classList.toggle('flipped');
+        }
+
+        // Birthday Card and Envelope
+        function showBirthdayCard() {
+            document.getElementById('birthday-card').style.display = 'block';
+            
+            // Scroll to the card
+            setTimeout(() => {
+                document.getElementById('birthday-card').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            envelope.classList.toggle('open');
+        }
+
+        // Confetti Animation
+        function startConfetti() {
+            const container = document.getElementById('confetti-container');
+            container.style.display = 'block';
+            container.innerHTML = '';
+            
+            // Create confetti pieces
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.backgroundColor = getRandomColor();
+                
+                // Random shapes
+                const shapes = ['circle', 'triangle', 'square'];
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    confetti.style.width = '0';
+                    confetti.style.height = '0';
+                    confetti.style.backgroundColor = 'transparent';
+                    confetti.style.borderLeft = '10px solid transparent';
+                    confetti.style.borderRight = '10px solid transparent';
+                    confetti.style.borderBottom = '20px solid ' + getRandomColor();
+                }
+                
+                container.appendChild(confetti);
+            }
+            
+            // Clean up after animation completes
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 5000);
+        }
+
+        function getRandomColor() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFD166', '#06D6A0', '#118AB2'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Admin Section
+        function showAdminSection() {
+            showSection('admin');
+            document.getElementById('admin-password-section').style.display = 'block';
+            document.getElementById('admin-controls').style.display = 'none';
+        }
+
+        function checkAdminPassword() {
+            const password = document.getElementById('admin-password-input').value;
+            if (password === 'adminpanel123') {
+                document.getElementById('admin-password-section').style.display = 'none';
+                document.getElementById('admin-controls').style.display = 'block';
+            } else {
+                alert('Incorrect admin password. Try again!');
+            }
+        }
+
+        function updateCounter(action) {
+            const input = document.getElementById('days-together-input');
+            let value = parseInt(input.value);
+            
+            if (action === 'plus') {
+                value++;
+            } else if (action === 'minus') {
+                value--;
+            }
+            
+            input.value = value;
+        }
+
+        function saveCounter() {
+            const value = document.getElementById('days-together-input').value;
+            document.getElementById('days-together').textContent = value;
+            document.getElementById('day-counter').innerHTML = value + ' Days Together - Love you <i class="fas fa-heart" style="color: red;"></i>';
+            alert('Counter updated successfully!');
+        }
+
+        function toggleSpecialDay() {
+            const isChecked = document.getElementById('special-day-toggle').checked;
+            document.getElementById('special-day-title').style.display = isChecked ? 'block' : 'none';
+        }
+
+        // Trips Data Reload
+        function reloadTripsData() {
+            // Simulate loading data
+            const reloadBtn = document.querySelector('.reload-btn');
+            reloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            
+            setTimeout(() => {
+                reloadBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Reload Data';
+                alert('Trip data reloaded successfully!');
+            }, 1500);
+        }
+
+        // Show Past Gifts
+        function showPastGift(date) {
+            alert('This feature will display the gift from ' + date + '. This feature is coming soon!');
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('February 14, 2026').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.`

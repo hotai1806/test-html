@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ALMOND&BLUEBERRY INC</title>
+    <link rel="icon" type="image/x-icon" href="/icon.jpeg" />
 
     <style>
       /* Card styles */
@@ -1100,15 +1101,6 @@
         animation: float 3s ease-in-out infinite;
       }
 
-      /* Confetti effect */
-      .confetti {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: #f00;
-        opacity: 0;
-      }
-
       /* Mobile responsiveness */
       @media (max-width: 500px) {
         .birthdayCard {
@@ -1569,15 +1561,6 @@
 
       .sheep {
         animation: float 3s ease-in-out infinite;
-      }
-
-      /* Confetti effect */
-      .confetti {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: #f00;
-        opacity: 0;
       }
 
       /* Mobile responsiveness */
@@ -2307,6 +2290,14 @@
       .photo-card:hover .photo-inner {
         transform: rotateY(180deg);
       }
+      @media (hover: none) {
+        .photo-card:hover .photo-inner {
+          transform: none;
+        }
+      }
+      .photo-card.flipped .photo-inner {
+        transform: rotateY(180deg);
+      }
 
       .photo-front,
       .photo-back {
@@ -2605,7 +2596,7 @@
         background: var(--sheep-color);
         border: 3px solid var(--sheep-border);
         border-radius: 50%; */
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
         animation: float 2s ease-in-out infinite;
       }
 
@@ -2767,6 +2758,26 @@
         gap: 15px;
         padding: 0 20px;
       }
+      #trip-table-container {
+        overflow-x: auto;
+        width: 100%;
+      }
+
+      #trip-table-container table {
+        width: 100%;
+        min-width: 600px; /* Set a min width if you want to preserve spacing */
+        border-collapse: collapse;
+      }
+
+      /* Optional: better mobile scroll */
+      #trip-table-container::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      #trip-table-container::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
@@ -2832,7 +2843,7 @@
     <div class="container" id="mainContent">
       <!-- Header -->
       <header>
-        <h1>ALMOND&BLUEBERRY INC</h1>
+        <h1>ALMOND&BLUEBERRY INC.</h1>
         <p class="day-counter" id="dayCounter">
           <span id="together-count"></span> Days Together
         </p>
@@ -3349,7 +3360,7 @@
       </section>
     </div>
     <script src="https://apis.google.com/js/api.js"></script>
-    <script defer src="/_vercel/insights/script.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
       // Variables
@@ -3460,6 +3471,7 @@
           const confetti = document.createElement("div");
           confetti.classList.add("confetti");
           confetti.style.left = Math.random() * 100 + "vw";
+
           confetti.style.backgroundColor = [
             "#FF6B6B",
             "#4ECDC4",
@@ -3469,7 +3481,7 @@
           confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
           confetti.style.animationDelay = Math.random() * 2 + "s";
           document.body.appendChild(confetti);
-
+          console.log(1111111, confetti);
           setTimeout(() => {
             confetti.remove();
           }, 5000);
@@ -3544,7 +3556,7 @@
           document.getElementById(sectionId).classList.remove("hidden");
 
           // Apply typewriter effect on section change
-          applyTypewriterEffect();
+          // applyTypewriterEffect();
         });
       });
 
@@ -3629,53 +3641,8 @@
       });
 
       // Add confetti effect
-      function createConfetti() {
-        const colors = [
-          "#ff6b6b",
-          "#ff8e8e",
-          "#ffb3b3",
-          "#ffd8d8",
-          "#a8edea",
-          "#fed6e3",
-        ];
-        const cardFront = document.querySelector(".cardFront_1");
 
-        // Remove existing confetti
-        const existingConfetti = document.querySelectorAll(".confetti");
-        existingConfetti.forEach((el) => el.remove());
-
-        for (let i = 0; i < 50; i++) {
-          const confetti = document.createElement("div");
-          confetti.className = "confetti";
-          confetti.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.left = Math.random() * 100 + "%";
-          confetti.style.top = Math.random() * 100 + "%";
-          confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
-          confetti.style.width = Math.random() * 10 + 5 + "px";
-          confetti.style.height = Math.random() * 10 + 5 + "px";
-          confetti.style.opacity = "0.8";
-          confetti.style.position = "absolute";
-          confetti.style.borderRadius = "50%";
-
-          cardFront.appendChild(confetti);
-
-          // Animate confetti
-          setTimeout(() => {
-            confetti.style.transition = "all 1s ease-out";
-            confetti.style.opacity = "0";
-            confetti.style.transform =
-              "translateY(100px) rotate(" + Math.random() * 360 + "deg)";
-
-            // Remove after animation
-            setTimeout(() => {
-              confetti.remove();
-            }, 1000);
-          }, Math.random() * 1000);
-        }
-      }
-
-      // Make card interactive on mobile
+      // // Make card interactive on mobile
       let touchStartX = 0;
 
       card.addEventListener(
@@ -3815,7 +3782,6 @@
         // Finally render
         renderMemorySection();
         renderTogetherDays();
-        renderDaily();
       };
       function renderTripTable(trips, containerId = "trip-table-container") {
         const container = document.getElementById(containerId);
@@ -3824,6 +3790,7 @@
         table.style.width = "100%";
         table.style.borderCollapse = "collapse";
         table.style.border = "3px solid var(--dark)";
+        table.style.minWidth = "600px";
 
         const thead = document.createElement("thead");
         thead.innerHTML = `
@@ -3948,13 +3915,14 @@
         .then((res) => res.text())
         .then((csvText) => {
           const text = parseCsvToText(csvText);
-          console.log(text);
+
           renderDaily(text);
         });
       function renderDaily(text) {
         const dailyText = document.getElementById("letter-content");
         const dailyTextContainer = document.createElement("div");
         dailyTextContainer.classList.add("daily-text-container");
+
         const content = text.data[0]; // Assuming the first row contains the header
         dailyText.innerHTML = `
         
@@ -3962,6 +3930,21 @@
       `;
         dailyText.appendChild(dailyTextContainer);
       }
+      document.addEventListener("DOMContentLoaded", () => {
+        const photoCards = document.querySelectorAll(".photo-card");
+
+        // Detect mobile
+        const isTouchDevice =
+          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+        if (isTouchDevice) {
+          photoCards.forEach((card) => {
+            card.addEventListener("click", () => {
+              card.classList.toggle("flipped");
+            });
+          });
+        }
+      });
     </script>
   </body>
 </html>

@@ -3717,6 +3717,7 @@
       ${memoryItems.map(parseMemoryItemToCard).join("\n")}
     </div>
   `;
+        addFlip();
       }
       const API_KEY = "AIzaSyAS8khPDtWSbw2Zy_06fzDLAgZW79m0mNk";
       const FOLDER_ID = "1VQ3-SflvR1yemq-xmPJ9_IrG0K-fvypE";
@@ -3930,21 +3931,24 @@
       `;
         dailyText.appendChild(dailyTextContainer);
       }
-      document.addEventListener("DOMContentLoaded", () => {
+      const addFlip = () => {
         const photoCards = document.querySelectorAll(".photo-card");
 
         // Detect mobile
-        const isTouchDevice =
-          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        photoCards.forEach((card) => {
+          let isFlipped = false;
 
-        if (isTouchDevice) {
-          photoCards.forEach((card) => {
-            card.addEventListener("click", () => {
+          card.addEventListener("touchstart", (event) => {
+            event.preventDefault(); // Prevent default touch behavior (like scrolling) on the card
+
+            // Check if it's a single touch (not pinch or zoom)
+            if (event.touches.length === 1) {
               card.classList.toggle("flipped");
-            });
+              isFlipped = !isFlipped;
+            }
           });
-        }
-      });
+        });
+      };
     </script>
   </body>
 </html>

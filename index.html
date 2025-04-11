@@ -3007,7 +3007,7 @@
           />
           <button class="password-button" id="passwordButton">Unlock</button>
           <p class="password-hint">
-            Hint: the password is what I like the most
+            Hint: the movie name that comes to your mind
           </p>
         </div>
       </section>
@@ -3146,7 +3146,10 @@
               border: 2px solid var(--dark);
             "
           >
-            <strong>May 16, 2025</strong> - Our Anniversary (1062 days together)
+            <strong>May 16, 2025</strong> - Our Anniversary (<span
+              id="together-count"
+            ></span>
+            days together)
           </li>
           <li
             style="
@@ -3346,10 +3349,11 @@
       </section>
     </div>
     <script src="https://apis.google.com/js/api.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
       // Variables
-      const correctPassword = "1";
+      const correctPassword = "thelastofus";
       const adminPassword = "admin123"; // You will replace this
       let isDaySpecial = true; // Set to true for birthday, false for normal day
 
@@ -3472,19 +3476,19 @@
         }
       }
 
-      function applyTypewriterEffect() {
-        const typewriterElements =
-          document.querySelectorAll(".typewriter-text");
-        typewriterElements.forEach((element) => {
-          // Reset the animation
-          element.style.animation = "none";
-          // Trigger reflow
-          void element.offsetWidth;
-          // Restart the animation
-          element.style.animation =
-            "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite";
-        });
-      }
+      // function applyTypewriterEffect() {
+      //   const typewriterElements =
+      //     document.querySelectorAll(".typewriter-text");
+      //   typewriterElements.forEach((element) => {
+      //     // Reset the animation
+      //     element.style.animation = "none";
+      //     // Trigger reflow
+      //     void element.offsetWidth;
+      //     // Restart the animation
+      //     element.style.animation =
+      //       "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite";
+      //   });
+      // }
 
       // Event Listeners
       window.addEventListener("load", hideLoadingScreen);
@@ -3811,6 +3815,7 @@
         // Finally render
         renderMemorySection();
         renderTogetherDays();
+        renderDaily();
       };
       function renderTripTable(trips, containerId = "trip-table-container") {
         const container = document.getElementById(containerId);
@@ -3931,6 +3936,31 @@
         document.querySelectorAll("#together-count").forEach((el) => {
           el.innerText = togetherDays;
         });
+      }
+      const urlCsvDaily =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCX7ZLV_iZp4ulG7GxQtuJz6SbMDshHmr__XiL3LLO8yP-T7lIL8YOfrqR-x2sHHjebJTgDjSAKZ50/pub?gid=0&single=true&output=csv";
+      function parseCsvToText(csvText) {
+        const results = Papa.parse(csvText, {});
+
+        return results;
+      }
+      fetch(urlCsvDaily)
+        .then((res) => res.text())
+        .then((csvText) => {
+          const text = parseCsvToText(csvText);
+          console.log(text);
+          renderDaily(text);
+        });
+      function renderDaily(text) {
+        const dailyText = document.getElementById("letter-content");
+        const dailyTextContainer = document.createElement("div");
+        dailyTextContainer.classList.add("daily-text-container");
+        const content = text.data[0]; // Assuming the first row contains the header
+        dailyText.innerHTML = `
+        
+        <div class="daily-content">${content}</div>
+      `;
+        dailyText.appendChild(dailyTextContainer);
       }
     </script>
   </body>

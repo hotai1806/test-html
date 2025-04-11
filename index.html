@@ -12,6 +12,7 @@
         position: relative;
         width: 90%;
         max-width: 350px;
+        min-width: 350px;
         height: 500px;
         cursor: pointer;
         transform-style: preserve-3d;
@@ -105,9 +106,9 @@
         transform: rotateY(-160deg);
       }
 
-      .birthdayCard_1:hover .happy_1 {
+      /* .birthdayCard_1:hover .happy_1 {
         visibility: hidden;
-      }
+      } */
 
       /* Landscape elements */
       .grass_1 {
@@ -679,20 +680,6 @@
         }
       }
 
-      /* Touch support for mobile */
-      .birthdayCard.touched {
-        transform: perspective(2500px) rotate(5deg);
-        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
-          0 10px 100px rgba(0, 0, 0, 0.3);
-      }
-
-      .birthdayCard.touched .cardFront {
-        transform: rotateY(-160deg);
-      }
-
-      .birthdayCard.touched .happy {
-        visibility: hidden;
-      }
       /* Your Sheep Design - Adapted for the card */
       .sheep-container {
         width: 100%;
@@ -1565,7 +1552,7 @@
 
       /* Mobile responsiveness */
       @media (max-width: 500px) {
-        .birthdayCard {
+        .birthdayCard_1 {
           height: 450px;
         }
 
@@ -1597,17 +1584,17 @@
       }
 
       /* Touch support for mobile */
-      .birthdayCard.touched {
+      .birthdayCard_1.touched {
         transform: perspective(2500px) rotate(5deg);
         box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
           0 10px 100px rgba(0, 0, 0, 0.3);
       }
 
-      .birthdayCard.touched .cardFront {
+      .birthdayCard_1.touched .cardFront_1 {
         transform: rotateY(-160deg);
       }
 
-      .birthdayCard.touched .happy {
+      .birthdayCard_1.touched .happy_1 {
         visibility: hidden;
       }
       body {
@@ -3749,7 +3736,7 @@
         const memoryItems = files
           .map((file) => ({
             filename: file.name,
-            url: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1800`,
+            // url: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1800`,
 
             date: extractDateFromFilename(file.name), // 👈 extract date
           }))

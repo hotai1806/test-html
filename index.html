@@ -1,1701 +1,3937 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ALMOND&BLUEBERRY INC</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
-        /* Base styling */
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFD166;
-            --dark: #292F36;
-            --light: #F7FFF7;
-            --sheep-color: #fff;
-            --sheep-shadow-color: #eee;
-            --box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
-            --border: 4px solid black;
+      /* Card styles */
+      .birthdayEnvelope_1 {
+        position: relative;
+        width: 90%;
+        max-width: 350px;
+        height: 500px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transform: perspective(2500px);
+        transition: all 0.8s ease;
+      }
+      .birthdayCard_1 {
+        position: relative;
+        width: 90%;
+        max-width: 350px;
+        height: 500px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transform: perspective(2500px);
+        transition: all 0.8s ease;
+      }
+
+      .cardFront_1 {
+        position: relative;
+        background-color: #f8f9fa;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform-origin: left;
+        box-shadow: inset 50px 5px 50px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.8s ease;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+      }
+
+      .cardInside_1 {
+        position: absolute;
+        background-color: #fff9f9;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        box-shadow: inset 50px 5px 50px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .cardInsideLetter_1 {
+        margin-top: 20px;
+        height: calc(100% - 40px);
+        overflow-y: auto;
+      }
+
+      .happy_1 {
+        font-family: "Pacifico", cursive;
+        text-align: center;
+        margin: 20px 0;
+        color: #6d6875;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1.5em;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 5;
+      }
+
+      p {
+        color: #333;
+        font-size: 0.9em;
+        line-height: 1.6;
+        margin: 10px 0;
+      }
+
+      .name_1 {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .birthdayCard_1:hover {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard_1:hover .cardFront_1 {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard_1:hover .happy_1 {
+        visibility: hidden;
+      }
+
+      /* Landscape elements */
+      .grass_1 {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 90px;
+        background: linear-gradient(to bottom, #7cba6b, #5d9c4a);
+        z-index: 2;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+
+      .grass-blades_1 {
+        position: absolute;
+        top: -15px;
+        width: 100%;
+        height: 20px;
+        background-image: linear-gradient(
+            45deg,
+            transparent 45%,
+            #5d9c4a 45%,
+            #5d9c4a 55%,
+            transparent 55%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 45%,
+            #5d9c4a 45%,
+            #5d9c4a 55%,
+            transparent 55%
+          );
+        background-size: 20px 20px;
+      }
+
+      .fence_1 {
+        position: absolute;
+        bottom: 90px;
+        width: 100%;
+        height: 40px;
+        background: linear-gradient(
+          90deg,
+          #deb887 0%,
+          #deb887 10%,
+          #f0d8b0 10%,
+          #f0d8b0 20%,
+          #deb887 20%,
+          #deb887 30%,
+          #f0d8b0 30%,
+          #f0d8b0 40%,
+          #deb887 40%,
+          #deb887 50%,
+          #f0d8b0 50%,
+          #f0d8b0 60%,
+          #deb887 60%,
+          #deb887 70%,
+          #f0d8b0 70%,
+          #f0d8b0 80%,
+          #deb887 80%,
+          #deb887 90%,
+          #f0d8b0 90%,
+          #f0d8b0 100%
+        );
+        z-index: 1;
+      }
+
+      .fence-posts_1 {
+        position: absolute;
+        bottom: 90px;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+        z-index: 1;
+      }
+
+      .fence-post_1 {
+        width: 8px;
+        height: 60px;
+        background: linear-gradient(to bottom, #8b4513, #a0522d);
+        border-radius: 3px;
+      }
+
+      .sun_1 {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle at 30% 30%, #ffde59, #ff914d);
+        border-radius: 50%;
+        box-shadow: 0 0 40px #ffde59;
+        z-index: 0;
+      }
+
+      .sun-rays_1 {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(
+          circle,
+          transparent 50%,
+          rgba(255, 222, 89, 0.3) 70%
+        );
+        border-radius: 50%;
+        animation: pulse_1 2s infinite alternate;
+      }
+
+      @keyframes pulse_1 {
+        0% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(1.2);
+          opacity: 0.1;
+        }
+      }
+
+      /* Your Sheep Design - Adapted for the card */
+      .sheep-container_1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        z-index: 3;
+        transform: translateY(20px);
+      }
+
+      .sheep_1 {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+        transform: scale(0.9);
+      }
+
+      .legs_1 {
+        position: absolute;
+        top: 180px;
+        left: 100px;
+        z-index: 4;
+      }
+
+      .leg_1 {
+        background: #000;
+        width: 18px;
+        height: 55px;
+        border-radius: 7px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        transform-origin: top left;
+      }
+
+      .leg-1_1 {
+        transform: rotate(10deg);
+        left: 20px;
+        animation-name: walk-leg-front-cycle_1;
+      }
+      .leg-2_1 {
+        transform: rotate(-10deg);
+        left: 40px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle_1;
+      }
+      .leg-3_1 {
+        transform: rotate(10deg);
+        left: 95px;
+        animation-name: walk-leg-front-cycle_1;
+      }
+      .leg-4_1 {
+        transform: rotate(-10deg);
+        left: 120px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle_1;
+      }
+
+      .piece-of-wool_1 {
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+
+      .wool-shadowlayer_1 .piece-of-wool_1 {
+        background: #eee;
+        z-index: 1;
+        margin-bottom: -8px;
+      }
+
+      .wool_1 {
+        width: 160px;
+        height: 140px;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+        z-index: 3;
+      }
+
+      .piece-of-wool-1_1 {
+        width: 160px;
+        height: 140px;
+        border-radius: 160px / 140px;
+        position: relative;
+        z-index: 0;
+      }
+      .piece-of-wool-2_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        top: 0;
+        left: -5px;
+      }
+      .piece-of-wool-3_1 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        top: -20px;
+        left: 75px;
+      }
+      .piece-of-wool-4_1 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: -15px;
+        left: 25px;
+      }
+      .piece-of-wool-5_1 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: -6px;
+        left: 40px;
+      }
+      .piece-of-wool-6_1 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        bottom: -2px;
+        left: 50px;
+      }
+      .piece-of-wool-7_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+      }
+      .piece-of-wool-8_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 10px;
+        left: 100px;
+      }
+      .piece-of-wool-9_1 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: 35px;
+        left: 134px;
+      }
+      .piece-of-wool-10_1 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: 0;
+        left: 106px;
+      }
+
+      .head_1 {
+        position: absolute;
+        left: 32px;
+        top: 30px;
+        z-index: 4;
+        width: 100px;
+        height: 130px;
+        animation: head-cycle_1 20s infinite alternate;
+      }
+
+      .head-face_1,
+      .head-shadow_1 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100px;
+        height: 130px;
+        border-radius: 95px / 130px;
+        z-index: 1;
+      }
+
+      .head-shadow_1 {
+        background: #eee;
+        margin: 3px 0 0 5px;
+        z-index: 0;
+      }
+
+      .head-face-front_1 {
+        width: 85px;
+        height: 110px;
+        border-radius: 85px / 110px;
+        position: absolute;
+        left: 50%;
+        margin-left: -42.5px;
+        top: 0;
+        background: #fff;
+        z-index: 3;
+      }
+
+      .ear_1 {
+        background: #000;
+        width: 50px;
+        height: 60px;
+        border-radius: 50px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        top: 15px;
+        transform-origin: top left;
+      }
+
+      .ear-1_1 {
+        transform: rotate(75deg);
+        animation: ear-1-cycle_1 20s infinite;
+      }
+
+      .ear-2_1 {
+        transform: rotate(5deg);
+        left: 65px;
+        animation: ear-2-cycle_1 20s infinite;
+      }
+
+      .ear-shadow_1 {
+        background: #eee;
+        margin: 6px 0 0 6px;
+        z-index: 0;
+      }
+
+      .eye_1 {
+        width: 15px;
+        height: 22px;
+        border-radius: 15px / 22px;
+        background: #000;
+        position: absolute;
+        top: 35px;
+        z-index: 5;
+        animation: eye-blink-cycle_1 0.3s 5s 2 alternate;
+      }
+
+      .eye-1_1 {
+        left: 30px;
+      }
+
+      .eye-2_1 {
+        right: 30px;
+      }
+
+      .glow_1 {
+        width: 5px;
+        height: 7px;
+        border-radius: 5px / 7px;
+        background: #fff;
+        position: absolute;
+        left: 47%;
+        top: 20%;
+        animation: eye-blink-glow-cycle_1 0.3s 5s 2 alternate;
+      }
+
+      .wool-head_1 {
+        width: 100px;
+        position: absolute;
+        left: 0;
+        top: -4px;
+        z-index: 4;
+      }
+
+      .wool-head_1 .piece-of-wool-1_1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 5px;
+      }
+
+      .wool-head_1 .piece-of-wool-2_1 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: -10px;
+        left: 25px;
+      }
+
+      .wool-head_1 .piece-of-wool-3_1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 55px;
+      }
+
+      .wool-shadowlayer_1 .piece-of-wool_1 {
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 0;
+      }
+
+      .caption_1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        font-size: 1.5em;
+        font-family: "Pacifico", cursive;
+        color: #6d6875;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        z-index: 5;
+      }
+
+      /* Sheep animations */
+      @keyframes walk-leg-back-cycle_1 {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg) translateX(-20px);
+        }
+      }
+
+      @keyframes walk-leg-front-cycle_1 {
+        0% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-10deg) translateX(20px);
+        }
+      }
+
+      @keyframes head-cycle_1 {
+        40% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes ear-1-cycle_1 {
+        0%,
+        10%,
+        20%,
+        40%,
+        50%,
+        100% {
+          transform: rotate(75deg);
+        }
+        5%,
+        45% {
+          transform: rotate(85deg);
+        }
+        15% {
+          transform: rotate(80deg);
+        }
+      }
+
+      @keyframes ear-2-cycle_1 {
+        0%,
+        10%,
+        20%,
+        30%,
+        40%,
+        50%,
+        70%,
+        80%,
+        100% {
+          transform: rotate(5deg);
+        }
+        15%,
+        75% {
+          transform: rotate(-5deg);
+        }
+        45% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes eye-blink-cycle_1 {
+        100% {
+          height: 2px;
+          border-radius: 0;
+          margin-top: 5px;
+        }
+      }
+
+      @keyframes eye-blink-glow-cycle_1 {
+        100% {
+          height: 0;
+          border-radius: 0;
+        }
+      }
+
+      /* Floating animation for the sheep */
+      @keyframes float_1 {
+        0%,
+        100% {
+          transform: translateY(0) scale(0.9);
+        }
+        50% {
+          transform: translateY(-10px) scale(0.9);
+        }
+      }
+
+      .sheep_1 {
+        animation: float_1 3s ease-in-out infinite;
+      }
+
+      /* Confetti effect */
+      .confetti_1 {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 500px) {
+        .birthdayCard_1 {
+          height: 450px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Pixelated', 'Courier New', monospace;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        .sheep_1 {
+          transform: scale(0.7);
         }
 
-        @font-face {
-            font-family: 'Pixelated';
-            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        .happy_1 {
+          font-size: 1.2em;
         }
 
-        body {
-            background-color: #a1d568;
-            color: var(--dark);
-            overflow-x: hidden;
-            padding: 20px;
+        p_1 {
+          font-size: 0.8em;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .sun_1 {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
         }
 
-        /* Neubrutalism Style */
-        .neubrutalism-box {
-            background-color: white;
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-            padding: 20px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+        .sun-rays_1 {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      /* Touch support for mobile */
+      .birthdayCard.touched {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard.touched .cardFront {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard.touched .happy {
+        visibility: hidden;
+      }
+      /* Your Sheep Design - Adapted for the card */
+      .sheep-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        z-index: 3;
+        transform: translateY(20px);
+      }
+
+      .sheep {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+        transform: scale(0.9);
+      }
+
+      .legs {
+        position: absolute;
+        top: 180px;
+        left: 100px;
+        z-index: 4;
+      }
+
+      .leg {
+        background: #000;
+        width: 18px;
+        height: 55px;
+        border-radius: 7px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        transform-origin: top left;
+      }
+
+      .leg-1 {
+        transform: rotate(10deg);
+        left: 20px;
+        animation-name: walk-leg-front-cycle;
+      }
+      .leg-2 {
+        transform: rotate(-10deg);
+        left: 40px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+      .leg-3 {
+        transform: rotate(10deg);
+        left: 95px;
+        animation-name: walk-leg-front-cycle;
+      }
+      .leg-4 {
+        transform: rotate(-10deg);
+        left: 120px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+
+      .piece-of-wool {
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+
+      .wool-shadowlayer .piece-of-wool {
+        background: #eee;
+        z-index: 1;
+        margin-bottom: -8px;
+      }
+
+      .wool {
+        width: 160px;
+        height: 140px;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+        z-index: 3;
+      }
+
+      .piece-of-wool-1 {
+        width: 160px;
+        height: 140px;
+        border-radius: 160px / 140px;
+        position: relative;
+        z-index: 0;
+      }
+      .piece-of-wool-2 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        top: 0;
+        left: -5px;
+      }
+      .piece-of-wool-3 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        top: -20px;
+        left: 75px;
+      }
+      .piece-of-wool-4 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: -15px;
+        left: 25px;
+      }
+      .piece-of-wool-5 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: -6px;
+        left: 40px;
+      }
+      .piece-of-wool-6 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        bottom: -2px;
+        left: 50px;
+      }
+      .piece-of-wool-7 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+      }
+      .piece-of-wool-8 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 10px;
+        left: 100px;
+      }
+      .piece-of-wool-9 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: 35px;
+        left: 134px;
+      }
+      .piece-of-wool-10 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: 0;
+        left: 106px;
+      }
+
+      .head {
+        position: absolute;
+        left: 32px;
+        top: 30px;
+        z-index: 4;
+        width: 100px;
+        height: 130px;
+        animation: head-cycle 20s infinite alternate;
+      }
+
+      .head-face,
+      .head-shadow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100px;
+        height: 130px;
+        border-radius: 95px / 130px;
+        z-index: 1;
+      }
+
+      .head-shadow {
+        background: #eee;
+        margin: 3px 0 0 5px;
+        z-index: 0;
+      }
+
+      .head-face-front {
+        width: 85px;
+        height: 110px;
+        border-radius: 85px / 110px;
+        position: absolute;
+        left: 50%;
+        margin-left: -42.5px;
+        top: 0;
+        background: #fff;
+        z-index: 3;
+      }
+
+      .ear {
+        background: #000;
+        width: 50px;
+        height: 60px;
+        border-radius: 50px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        top: 15px;
+        transform-origin: top left;
+      }
+
+      .ear-1 {
+        transform: rotate(75deg);
+        animation: ear-1-cycle 20s infinite;
+      }
+
+      .ear-2 {
+        transform: rotate(5deg);
+        left: 65px;
+        animation: ear-2-cycle 20s infinite;
+      }
+
+      .ear-shadow {
+        background: #eee;
+        margin: 6px 0 0 6px;
+        z-index: 0;
+      }
+
+      .eye {
+        width: 15px;
+        height: 22px;
+        border-radius: 15px / 22px;
+        background: #000;
+        position: absolute;
+        top: 35px;
+        z-index: 5;
+        animation: eye-blink-cycle 0.3s 5s 2 alternate;
+      }
+
+      .eye-1 {
+        left: 30px;
+      }
+
+      .eye-2 {
+        right: 30px;
+      }
+
+      .glow {
+        width: 5px;
+        height: 7px;
+        border-radius: 5px / 7px;
+        background: #fff;
+        position: absolute;
+        left: 47%;
+        top: 20%;
+        animation: eye-blink-glow-cycle 0.3s 5s 2 alternate;
+      }
+
+      .wool-head {
+        width: 100px;
+        position: absolute;
+        left: 0;
+        top: -4px;
+        z-index: 4;
+      }
+
+      .wool-head .piece-of-wool-1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 5px;
+      }
+
+      .wool-head .piece-of-wool-2 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: -10px;
+        left: 25px;
+      }
+
+      .wool-head .piece-of-wool-3 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 55px;
+      }
+
+      .wool-shadowlayer .piece-of-wool {
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 0;
+      }
+
+      .caption {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        font-size: 1.5em;
+        font-family: "Pacifico", cursive;
+        color: #6d6875;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        z-index: 5;
+      }
+
+      /* Sheep animations */
+      @keyframes walk-leg-back-cycle {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg) translateX(-20px);
+        }
+      }
+
+      @keyframes walk-leg-front-cycle {
+        0% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-10deg) translateX(20px);
+        }
+      }
+
+      @keyframes head-cycle {
+        40% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes ear-1-cycle {
+        0%,
+        10%,
+        20%,
+        40%,
+        50%,
+        100% {
+          transform: rotate(75deg);
+        }
+        5%,
+        45% {
+          transform: rotate(85deg);
+        }
+        15% {
+          transform: rotate(80deg);
+        }
+      }
+
+      @keyframes ear-2-cycle {
+        0%,
+        10%,
+        20%,
+        30%,
+        40%,
+        50%,
+        70%,
+        80%,
+        100% {
+          transform: rotate(5deg);
+        }
+        15%,
+        75% {
+          transform: rotate(-5deg);
+        }
+        45% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes eye-blink-cycle {
+        100% {
+          height: 2px;
+          border-radius: 0;
+          margin-top: 5px;
+        }
+      }
+
+      @keyframes eye-blink-glow-cycle {
+        100% {
+          height: 0;
+          border-radius: 0;
+        }
+      }
+
+      /* Floating animation for the sheep */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) scale(0.9);
+        }
+        50% {
+          transform: translateY(-10px) scale(0.9);
+        }
+      }
+
+      .sheep {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Confetti effect */
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 500px) {
+        .birthdayCard {
+          height: 450px;
         }
 
-        .neubrutalism-box:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.8);
+        .sheep {
+          transform: scale(0.7);
+        }
+
+        .happy {
+          font-size: 1.2em;
+        }
+
+        p {
+          font-size: 0.8em;
+        }
+
+        .sun {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+
+        .sun-rays {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      /* Touch support for mobile */
+      .birthdayCard.touched {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard.touched .cardFront {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard.touched .happy {
+        visibility: hidden;
+      }
+
+      /* Your Sheep Design - Adapted for the card */
+      .sheep-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        z-index: 3;
+        transform: translateY(20px);
+        max-height: 300px;
+        overflow: hidden;
+      }
+
+      .sheep {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+        transform: scale(0.9);
+      }
+
+      .legs {
+        position: absolute;
+        top: 180px;
+        left: 100px;
+        z-index: 4;
+      }
+
+      .leg {
+        background: #000;
+        width: 18px;
+        height: 55px;
+        border-radius: 7px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        transform-origin: top left;
+      }
+
+      .leg-1 {
+        transform: rotate(10deg);
+        left: 20px;
+        animation-name: walk-leg-front-cycle;
+      }
+      .leg-2 {
+        transform: rotate(-10deg);
+        left: 40px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+      .leg-3 {
+        transform: rotate(10deg);
+        left: 95px;
+        animation-name: walk-leg-front-cycle;
+      }
+      .leg-4 {
+        transform: rotate(-10deg);
+        left: 120px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+
+      .piece-of-wool {
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+
+      .wool-shadowlayer .piece-of-wool {
+        background: #eee;
+        z-index: 1;
+        margin-bottom: -8px;
+      }
+
+      .wool {
+        width: 160px;
+        height: 140px;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+        z-index: 3;
+      }
+
+      .piece-of-wool-1 {
+        width: 160px;
+        height: 140px;
+        border-radius: 160px / 140px;
+        position: relative;
+        z-index: 0;
+      }
+      .piece-of-wool-2 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        top: 0;
+        left: -5px;
+      }
+      .piece-of-wool-3 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        top: -20px;
+        left: 75px;
+      }
+      .piece-of-wool-4 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: -15px;
+        left: 25px;
+      }
+      .piece-of-wool-5 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: -6px;
+        left: 40px;
+      }
+      .piece-of-wool-6 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        bottom: -2px;
+        left: 50px;
+      }
+      .piece-of-wool-7 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+      }
+      .piece-of-wool-8 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 10px;
+        left: 100px;
+      }
+      .piece-of-wool-9 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: 35px;
+        left: 134px;
+      }
+      .piece-of-wool-10 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: 0;
+        left: 106px;
+      }
+
+      .head {
+        position: absolute;
+        left: 32px;
+        top: 30px;
+        z-index: 4;
+        width: 100px;
+        height: 130px;
+        animation: head-cycle 20s infinite alternate;
+      }
+
+      .head-face,
+      .head-shadow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100px;
+        height: 130px;
+        border-radius: 95px / 130px;
+        z-index: 1;
+      }
+
+      .head-shadow {
+        background: #eee;
+        margin: 3px 0 0 5px;
+        z-index: 0;
+      }
+
+      .head-face-front {
+        width: 85px;
+        height: 110px;
+        border-radius: 85px / 110px;
+        position: absolute;
+        left: 50%;
+        margin-left: -42.5px;
+        top: 0;
+        background: #fff;
+        z-index: 3;
+      }
+
+      .ear {
+        background: #000;
+        width: 50px;
+        height: 60px;
+        border-radius: 50px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        top: 15px;
+        transform-origin: top left;
+      }
+
+      .ear-1 {
+        transform: rotate(75deg);
+        animation: ear-1-cycle 20s infinite;
+      }
+
+      .ear-2 {
+        transform: rotate(5deg);
+        left: 65px;
+        animation: ear-2-cycle 20s infinite;
+      }
+
+      .ear-shadow {
+        background: #eee;
+        margin: 6px 0 0 6px;
+        z-index: 0;
+      }
+
+      .eye {
+        width: 15px;
+        height: 22px;
+        border-radius: 15px / 22px;
+        background: #000;
+        position: absolute;
+        top: 35px;
+        z-index: 5;
+        animation: eye-blink-cycle 0.3s 5s 2 alternate;
+      }
+
+      .eye-1 {
+        left: 30px;
+      }
+
+      .eye-2 {
+        right: 30px;
+      }
+
+      .glow {
+        width: 5px;
+        height: 7px;
+        border-radius: 5px / 7px;
+        background: #fff;
+        position: absolute;
+        left: 47%;
+        top: 20%;
+        animation: eye-blink-glow-cycle 0.3s 5s 2 alternate;
+      }
+
+      .wool-head {
+        width: 100px;
+        position: absolute;
+        left: 0;
+        top: -4px;
+        z-index: 4;
+      }
+
+      .wool-head .piece-of-wool-1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 5px;
+      }
+
+      .wool-head .piece-of-wool-2 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: -10px;
+        left: 25px;
+      }
+
+      .wool-head .piece-of-wool-3 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 55px;
+      }
+
+      .wool-shadowlayer .piece-of-wool {
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 0;
+      }
+
+      .caption {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        font-size: 1.5em;
+        font-family: "Pacifico", cursive;
+        color: #6d6875;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        z-index: 5;
+        width: 100%;
+        text-align: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      /* Sheep animations */
+      @keyframes walk-leg-back-cycle {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg) translateX(-20px);
+        }
+      }
+
+      @keyframes walk-leg-front-cycle {
+        0% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-10deg) translateX(20px);
+        }
+      }
+
+      @keyframes head-cycle {
+        40% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes ear-1-cycle {
+        0%,
+        10%,
+        20%,
+        40%,
+        50%,
+        100% {
+          transform: rotate(75deg);
+        }
+        5%,
+        45% {
+          transform: rotate(85deg);
+        }
+        15% {
+          transform: rotate(80deg);
+        }
+      }
+
+      @keyframes ear-2-cycle {
+        0%,
+        10%,
+        20%,
+        30%,
+        40%,
+        50%,
+        70%,
+        80%,
+        100% {
+          transform: rotate(5deg);
+        }
+        15%,
+        75% {
+          transform: rotate(-5deg);
+        }
+        45% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes eye-blink-cycle {
+        100% {
+          height: 2px;
+          border-radius: 0;
+          margin-top: 5px;
+        }
+      }
+
+      @keyframes eye-blink-glow-cycle {
+        100% {
+          height: 0;
+          border-radius: 0;
+        }
+      }
+
+      /* Floating animation for the sheep */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) scale(0.9);
+        }
+        50% {
+          transform: translateY(-10px) scale(0.9);
+        }
+      }
+
+      .sheep {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Confetti effect */
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 500px) {
+        .birthdayCard {
+          height: 450px;
+        }
+
+        .sheep {
+          transform: scale(0.7);
+        }
+
+        .happy {
+          font-size: 1.2em;
+        }
+
+        p {
+          font-size: 0.8em;
+        }
+
+        .sun {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+
+        .sun-rays {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      /* Touch support for mobile */
+      .birthdayCard.touched {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard.touched .cardFront {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard.touched .happy {
+        visibility: hidden;
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .transform-origin-top-left-corner {
+        transform-origin: top left;
+      }
+
+      .sheep {
+        position: relative;
+        /* margin-top: 20%; */
+        /* margin: auto; */
+        margin-left: 0;
+        animation: sheep-walking-cycle linear 20s infinite;
+      }
+
+      .legs {
+        position: absolute;
+        top: 180px;
+        left: 100px;
+        z-index: 0;
+      }
+
+      .leg {
+        background: #000;
+        width: 18px;
+        height: 55px;
+        border-radius: 7px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
+
+      .leg-1 {
+        transform: rotate(10deg);
+        left: 20px;
+        animation-name: walk-leg-front-cycle;
+      }
+
+      .leg-2 {
+        transform: rotate(-10deg);
+        left: 40px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+
+      .leg-3 {
+        transform: rotate(10deg);
+        left: 95px;
+        animation-name: walk-leg-front-cycle;
+      }
+
+      .leg-4 {
+        transform: rotate(-10deg);
+        left: 120px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle;
+      }
+
+      .piece-of-wool {
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+
+      .wool-shadowlayer .piece-of-wool {
+        background: #eee;
+        z-index: 1;
+        margin-bottom: -8px;
+      }
+
+      .wool {
+        width: 160px;
+        height: 140px;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+        z-index: 1;
+      }
+
+      .wool .piece-of-wool-1 {
+        width: 160px;
+        height: 140px;
+        border-radius: 80px / 70px;
+        position: relative;
+        z-index: 0;
+      }
+
+      .wool .piece-of-wool-2 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        top: 0;
+        left: -5px;
+      }
+
+      .wool .piece-of-wool-3 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: -20px;
+        left: 75px;
+      }
+
+      .wool .piece-of-wool-4 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        top: -15px;
+        left: 25px;
+      }
+
+      .wool .piece-of-wool-5 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: -6px;
+        left: 40px;
+      }
+
+      .wool .piece-of-wool-6 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        bottom: -2px;
+        left: 50px;
+      }
+
+      .wool .piece-of-wool-7 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+      }
+
+      .wool .piece-of-wool-8 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 10px;
+        left: 100px;
+      }
+
+      .wool .piece-of-wool-9 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: 35px;
+        left: 134px;
+      }
+
+      .wool .piece-of-wool-10 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: 0;
+        left: 106px;
+      }
+
+      .head {
+        position: absolute;
+        left: 32px;
+        top: 30px;
+        z-index: 3;
+        width: 100px;
+        height: 130px;
+        animation: head-cycle 20s infinite alternate;
+      }
+
+      .head-face,
+      .head-shadow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100px;
+        height: 130px;
+        border-radius: 95px / 130px;
+        z-index: 1;
+      }
+
+      .head-shadow {
+        background: #eee;
+        margin: 3px 0 0 5px;
+        z-index: 0;
+      }
+
+      .head-face-front {
+        width: 85px;
+        height: 110px;
+        border-radius: 42.5px / 55px;
+        position: absolute;
+        left: 50%;
+        margin-left: -42.5px;
+        top: 0;
+        background: #fff;
+        z-index: 3;
+      }
+
+      .ear {
+        background: #000;
+        width: 50px;
+        height: 60px;
+        border-radius: 50px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        top: 15px;
+      }
+
+      .ear.ear-1 {
+        transform: rotate(75deg);
+        animation: ear-1-cycle 20s infinite;
+      }
+
+      .ear.ear-2 {
+        transform: rotate(5deg);
+        left: 85px;
+        animation: ear-2-cycle 20s infinite;
+      }
+
+      .ear.ear-2.ear-shadow {
+        background: #eee;
+        margin: 6px 0 0 6px;
+        z-index: 0;
+      }
+
+      .eye {
+        width: 15px;
+        height: 23px;
+        border-radius: 7.5px / 11.5px;
+        background: #000;
+        position: absolute;
+        top: 35px;
+        z-index: 5;
+        animation: eye-blink-cycle 0.3s 5s 2 alternate;
+      }
+
+      .eye .glow {
+        width: 5px;
+        height: 7px;
+        border-radius: 2.5px / 3.5px;
+        background: #fff;
+        position: absolute;
+        left: 47%;
+        top: 20%;
+        animation: eye-blink-glow-cycle 0.3s 5s 2 alternate;
+      }
+
+      .eye.eye-1 {
+        left: 30px;
+      }
+
+      .eye.eye-2 {
+        right: 30px;
+      }
+
+      .wool-head {
+        width: 100px;
+        position: absolute;
+        left: 0;
+        top: -4px;
+        z-index: 4;
+      }
+
+      .wool-head .piece-of-wool-1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 5px;
+        position: absolute;
+      }
+
+      .wool-head .piece-of-wool-2 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: -10px;
+        left: 25px;
+        position: absolute;
+      }
+
+      .wool-head .piece-of-wool-3 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 55px;
+        position: absolute;
+      }
+
+      .wool-head .wool-shadowlayer .piece-of-wool {
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 0;
+      }
+
+      @keyframes walk-leg-back-cycle {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg) translateX(-20px);
+        }
+      }
+
+      @keyframes walk-leg-front-cycle {
+        0% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-10deg) translateX(20px);
+        }
+      }
+
+      @keyframes head-cycle {
+        40% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes ear-1-cycle {
+        0%,
+        10%,
+        20%,
+        40%,
+        50%,
+        100% {
+          transform: rotate(75deg);
+        }
+        5%,
+        45% {
+          transform: rotate(85deg);
+        }
+        15% {
+          transform: rotate(80deg);
+        }
+      }
+
+      @keyframes ear-2-cycle {
+        0%,
+        10%,
+        20%,
+        30%,
+        40%,
+        50%,
+        70%,
+        80%,
+        100% {
+          transform: rotate(5deg);
+        }
+        15%,
+        75% {
+          transform: rotate(-5deg);
+        }
+        45% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes sheep-walking-cycle {
+        0% {
+          transform: translateX(650px);
+        }
+        100% {
+          transform: translateX(50px);
+        }
+      }
+
+      @keyframes eye-blink-cycle {
+        100% {
+          height: 2px;
+          border-radius: 0;
+          margin-top: 5px;
+        }
+      }
+
+      @keyframes eye-blink-glow-cycle {
+        100% {
+          height: 0;
+          border-radius: 0;
+        }
+      }
+
+      :root {
+        --primary: #ff6b6b;
+        --secondary: #4ecdc4;
+        --accent: #ffd166;
+        --dark: #2d3142;
+        --light: #f7f9f9;
+        --shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Courier New", monospace;
+      }
+
+      body {
+        background-color: var(--light);
+        overflow-x: hidden;
+        color: var(--dark);
+      }
+
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      @keyframes sheep-walk {
+        0% {
+          transform: translateX(-50px) rotate(0deg);
+        }
+        50% {
+          transform: translateX(50px) rotate(0deg);
+        }
+        100% {
+          transform: translateX(-50px) rotate(0deg);
+        }
+      }
+
+      .loading-bar-container {
+        width: 300px;
+        height: 30px;
+        border: 5px solid var(--dark);
+        border-radius: 5px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .loading-bar {
+        height: 100%;
+        width: 0%;
+        background-color: var(--primary);
+        animation: loading 1.5s ease-in-out forwards;
+      }
+
+      @keyframes loading {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: var(--light);
+        padding: 20px;
+        border: 5px solid var(--dark);
+        box-shadow: var(--shadow);
+        text-align: center;
+        margin-bottom: 20px;
+        /* transform: rotate(-1deg); */
+        /* transition: transform 0.3s ease; */
+      }
+
+      /* header:hover {
+        transform: rotate(1deg) scale(1.02);
+      } */
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-shadow: 3px 3px 0px var(--dark);
+      }
+
+      .day-counter {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .birthday-title {
+        font-size: 2.5rem;
+        color: var(--accent);
+        text-shadow: 3px 3px 0px var(--dark);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px;
+        background-color: var(--secondary);
+        border: 5px solid var(--dark);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        /* transform: rotate(1deg); */
+      }
+
+      .nav-item {
+        padding: 10px 20px;
+        border: 3px solid var(--dark);
+        background-color: var(--accent);
+        box-shadow: 3px 3px 0px var(--dark);
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-item:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0px var(--dark);
+      }
+
+      .nav-item.active {
+        background-color: var(--primary);
+        color: var(--light);
+      }
+
+      .nav-item.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .section {
+        padding: 20px;
+        background-color: white;
+        border: 5px solid var(--dark);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        transform: perspective(1000px) rotateX(2deg);
+        transition: transform 0.3s ease;
+      }
+
+      .section:hover {
+        transform: perspective(1000px) rotateX(0deg);
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        padding: 10px;
+        background-color: var(--accent);
+        border: 3px solid var(--dark);
+        box-shadow: 3px 3px 0px var(--dark);
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+      .typewriter-text {
+        overflow: hidden;
+        border-right: 3px solid var(--dark);
+        white-space: normal; /* 👈 allows line breaks */
+        margin: 0 auto;
+        letter-spacing: 0.12em;
+        padding: 0 20px;
+        /* animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite; */
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--dark);
+        }
+      }
+
+      .password-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .password-input {
+        padding: 12px;
+        width: 100%;
+        max-width: 300px;
+        border: 3px solid var(--dark);
+        font-size: 1.2rem;
+      }
+
+      .password-button {
+        padding: 12px 24px;
+        background-color: var(--accent);
+        border: 3px solid var(--dark);
+        box-shadow: 3px 3px 0px var(--dark);
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .password-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0px var(--dark);
+      }
+
+      .password-hint {
+        font-style: italic;
+        margin-top: 10px;
+      }
+
+      .memory-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .photo-card {
+        height: 300px;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+
+      .photo-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+
+      .photo-card:hover .photo-inner {
+        transform: rotateY(180deg);
+      }
+
+      .photo-front,
+      .photo-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border: 5px solid var(--dark);
+        box-shadow: var(--shadow);
+        padding: 10px;
+      }
+
+      .photo-front {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .photo-back {
+        background-color: var(--accent);
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .photo-image {
+        flex: 1;
+        background-color: #ddd;
+        margin-bottom: 10px;
+        background-size: cover;
+        background-position: center;
+        border: 3px solid var(--dark);
+      }
+
+      .photo-date {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+      }
+
+      .stat-card {
+        background-color: var(--accent);
+        border: 3px solid var(--dark);
+        box-shadow: var(--shadow);
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translate(-5px, -5px);
+        box-shadow: 8px 8px 0px var(--dark);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
+      .countdown-container {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--secondary);
+        border: 3px solid var(--dark);
+        box-shadow: var(--shadow);
+      }
+
+      .countdown-number {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .countdown-label {
+        font-size: 1.2rem;
+      }
+
+      .gift-container {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        padding: 20px;
+        margin-bottom: 50px; /* Added margin to separate from past gifts */
+      }
+
+      .envelope {
+        width: 300px;
+        height: 200px;
+        background-color: var(--primary);
+        position: relative;
+        border: 3px solid var(--dark);
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .envelope:hover {
+        transform: scale(1.05);
+      }
+
+      .envelope-flap {
+        width: 100%;
+        height: 100px;
+        background-color: var(--accent);
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        position: absolute;
+        top: -50px;
+        left: 0;
+        z-index: 2;
+        border: 3px solid var(--dark);
+        border-bottom: none;
+        transform-origin: top;
+        transition: transform 0.5s ease;
+      }
+
+      .envelope:hover .envelope-flap {
+        transform: rotateX(180deg);
+      }
+
+      .envelope-card {
+        width: 280px;
+        height: 180px;
+        background-color: white;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+        border: 2px solid var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.5s ease;
+      }
+
+      .envelope:hover .envelope-card {
+        transform: translateY(-30px);
+      }
+
+      .lily-flower {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .lily-petal {
+        width: 30px;
+        height: 60px;
+        background-color: #fff;
+        border: 2px solid var(--dark);
+        border-radius: 50% 50% 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform-origin: bottom center;
+        transition: transform 0.5s ease;
+      }
+
+      .lily-petal:nth-child(1) {
+        transform: translateX(-50%) rotate(-60deg);
+      }
+      .lily-petal:nth-child(2) {
+        transform: translateX(-50%) rotate(-30deg);
+      }
+      .lily-petal:nth-child(3) {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      .lily-petal:nth-child(4) {
+        transform: translateX(-50%) rotate(30deg);
+      }
+      .lily-petal:nth-child(5) {
+        transform: translateX(-50%) rotate(60deg);
+      }
+
+      .lily-flower:hover .lily-petal:nth-child(1) {
+        transform: translateX(-50%) rotate(-150deg);
+      }
+      .lily-flower:hover .lily-petal:nth-child(2) {
+        transform: translateX(-50%) rotate(-75deg);
+      }
+      .lily-flower:hover .lily-petal:nth-child(3) {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      .lily-flower:hover .lily-petal:nth-child(4) {
+        transform: translateX(-50%) rotate(75deg);
+      }
+      .lily-flower:hover .lily-petal:nth-child(5) {
+        transform: translateX(-50%) rotate(150deg);
+      }
+
+      .lily-center {
+        width: 20px;
+        height: 20px;
+        background-color: #ffd700;
+        border: 2px solid var(--dark);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .lily-stem {
+        width: 5px;
+        height: 40px;
+        background-color: #4caf50;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: var(--primary);
+        animation: confetti-fall 3s ease-in-out infinite;
+        z-index: 9999;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .admin-section {
+        margin-top: 50px;
+        padding: 20px;
+        border-top: 3px dashed var(--dark);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .navbar {
+          flex-direction: column;
         }
 
         .section-title {
-            display: inline-block;
-            background-color: var(--accent);
-            border: var(--border);
-            padding: 10px 20px;
-            margin-bottom: 20px;
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
-            transform: rotate(-2deg);
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .tilt-wrapper {
-            perspective: 1000px;
-        }
-
-        .tilt-element {
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--light);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #loading-bar-container {
-            width: 300px;
-            height: 30px;
-            border: var(--border);
-            margin-top: 200px;
-            position: relative;
-            background-color: white;
-        }
-
-        #loading-bar {
-            height: 100%;
-            width: 0%;
-            background-color: var(--primary);
-            transition: width 1.5s ease-in-out;
-        }
-
-        /* Header Styling */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .main-title {
-            font-size: 48px;
-            color: var(--dark);
-            margin-bottom: 20px;
-            text-shadow: 4px 4px 0 var(--accent);
-            transform: rotate(-1deg);
-            display: inline-block;
-            background-color: white;
-            padding: 15px 30px;
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-        }
-
-        .subtitle {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--dark);
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .nav-item {
-            padding: 15px 25px;
-            background-color: white;
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            min-width: 150px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--dark);
-            text-decoration: none;
-        }
-
-        .nav-item:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .nav-item.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .nav-item i {
-            font-size: 20px;
-        }
-
-        /* Password Section */
-        #password-section {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .password-input {
-            padding: 12px 20px;
-            border: var(--border);
-            margin-right: 10px;
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
-            font-size: 16px;
-            width: 300px;
-        }
-
-        .submit-btn {
-            padding: 12px 25px;
-            background-color: var(--primary);
-            color: white;
-            border: var(--border);
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .hint {
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        /* Content Sections */
-        .content-section {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 30px;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        .typewriter-text {
-            overflow: hidden;
-            border-right: 3px solid var(--dark);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--dark) }
-        }
-
-        /* Sheep Animation */
-        /* variables for sheep */
-        .sheep {
-            position: relative;
-            margin: auto;
-            animation: sheep-walking-cycle linear 20s infinite;
-        }
-
-        .legs {
-            position: absolute;
-            top: 180px;
-            left: 100px;
-            z-index: 0;
-        }
-
-        .leg {
-            background: #000;
-            width: 18px;
-            height: 55px;
-            border-radius: 7px;
-            position: absolute;
-            top: 0;
-            z-index: 1;
-            animation-duration: 1s;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            animation-timing-function: linear;
-            animation-fill-mode: forwards;
-        }
-
-        .transform-origin-top-left-corner {
-            transform-origin: top left;
-        }
-
-        .leg-1 {
-            transform: rotate(10deg);
-            left: 20px;
-            animation-name: walk-leg-front-cycle;
-        }
-        .leg-2 {
-            transform: rotate(-10deg);
-            left: 40px;
-            background: #444;
-            z-index: 0;
-            animation-name: walk-leg-back-cycle;
-        }
-        .leg-3 {
-            transform: rotate(10deg);
-            left: 95px;
-            animation-name: walk-leg-front-cycle;
-        }
-        .leg-4 {
-            transform: rotate(-10deg);
-            left: 120px;
-            background: #444;
-            z-index: 0;
-            animation-name: walk-leg-back-cycle;
-        }
-
-        .piece-of-wool {
-            position: absolute;
-            background: var(--sheep-color);
-            z-index: 2;
-        }
-        .wool-shadowlayer .piece-of-wool {
-            background: var(--sheep-shadow-color);
-            z-index: 1;
-            margin-bottom: -8px;
-        }
-
-        .wool {
-            width: 160px;
-            height: 140px;
-            position: absolute;
-            left: 90px;
-            top: 50px;
-            z-index: 1;
-        }
-
-        .piece-of-wool-1 {
-            width: 160px;
-            height: 140px;
-            border-radius: 160px / 140px;
-            position: relative;
-            z-index: 0;
-        }
-        .piece-of-wool-2 {
-            width: 70px;
-            height: 70px;
-            border-radius: 35px;
-            top: 0;
-            left: -5px;
-        }
-        .piece-of-wool-3 {
-            width: 80px;
-            height: 80px;
-            border-radius: 40px;
-            top: -20px;
-            left: 75px;
-        }
-        .piece-of-wool-4 {
-            width: 90px;
-            height: 90px;
-            border-radius: 45px;
-            top: -15px;
-            left: 25px;
-        }
-        .piece-of-wool-5 {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            bottom: -6px;
-            left: 40px;
-        }
-        .piece-of-wool-6 {
-            width: 90px;
-            height: 90px;
-            border-radius: 45px;
-            bottom: -2px;
-            left: 50px;
-        }
-        .piece-of-wool-7 {
-            width: 70px;
-            height: 70px;
-            border-radius: 35px;
-            bottom: 0;
-            left: 0;
-        }
-        .piece-of-wool-8 {
-            width: 70px;
-            height: 70px;
-            border-radius: 35px;
-            bottom: 10px;
-            left: 100px;
-        }
-        .piece-of-wool-9 {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            bottom: 35px;
-            left: 134px;
-        }
-        .piece-of-wool-10 {
-            width: 80px;
-            height: 80px;
-            border-radius: 40px;
-            top: 0;
-            left: 106px;
-        }
-
-        .head {
-            position: absolute;
-            left: 32px;
-            top: 30px;
-            z-index: 3;
-            width: 100px;
-            height: 130px;
-            animation: head-cycle 20s infinite alternate;
-        }
-
-        .head-face, .head-shadow {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: var(--sheep-color);
-            width: 100px;
-            height: 130px;
-            border-radius: 95px / 130px;
-            z-index: 1;
-        }
-        .head-shadow {
-            background: var(--sheep-shadow-color);
-            margin: 3px 0 0 5px;
-            z-index: 0;
-        }
-        .head-face-front {
-            width: 85px;
-            height: 110px;
-            border-radius: 42.5px / 55px;
-            position: absolute;
-            left: 50%;
-            margin-left: -42.5px;
-            top: 0;
-            background: #fff;
-            z-index: 3;
-        }
-        .ear {
-            background: #000;
-            width: 50px;
-            height: 60px;
-            border-radius: 50px;
-            border-top-left-radius: 0;
-            border-bottom-right-radius: 0;
-            position: absolute;
-            z-index: 2;
-            left: 15px;
-            top: 15px;
-        }
-
-        .ear.ear-1 {
-            transform: rotate(75deg);
-            animation: ear-1-cycle 20s infinite;
-        }
-        .ear.ear-2 {
-            transform: rotate(5deg);
-            left: 85px;
-            animation: ear-2-cycle 20s infinite;
-        }
-        .ear.ear-2.ear-shadow {
-            background: var(--sheep-shadow-color);
-            margin: 6px 0 0 6px;
-            z-index: 0;
-        }
-        .eye {
-            width: 15px;
-            height: 22.5px;
-            border-radius: 7.5px / 11.25px;
-            background: #000;
-            position: absolute;
-            top: 35px;
-            z-index: 5;
-            animation: eye-blink-cycle .3s 5s 2 alternate;
-        }
-
-        .glow {
-            width: 5px;
-            height: 7.5px;
-            border-radius: 2.5px / 3.75px;
-            background: #fff;
-            position: absolute;
-            left: 47%;
-            top: 20%;
-            animation: eye-blink-glow-cycle .3s 5s 2 alternate;
-        }
-        .eye.eye-1 {
-            left: 30px;
-        }
-        .eye.eye-2 {
-            right: 30px;
-        }
-        .wool-head {
-            width: 100px;
-            position: absolute;
-            left: 0;
-            top: -4px;
-            z-index: 4;
-        }
-
-        .wool-head .piece-of-wool-1 {
-            width: 30px;
-            height: 30px;
-            border-radius: 15px;
-            top: 0;
-            left: 5px;
-        }
-        .wool-head .piece-of-wool-2 {
-            width: 35px;
-            height: 35px;
-            border-radius: 17.5px;
-            top: -10px;
-            left: 25px;
-        }
-        .wool-head .piece-of-wool-3 {
-            width: 30px;
-            height: 30px;
-            border-radius: 15px;
-            top: 0;
-            left: 55px;
-        }
-        .wool-head .wool-shadowlayer .piece-of-wool {
-            margin-top: 4px;
-            margin-left: 4px;
-            margin-bottom: 0;
-        }
-
-        /* sheep animations */
-        @keyframes walk-leg-back-cycle {
-            0% { transform: rotate(-10deg); }
-            100% { transform: rotate(10deg) translateX(-20px); }
-        }
-        @keyframes walk-leg-front-cycle {
-            0% { transform: rotate(10deg); }
-            100% { transform: rotate(-10deg) translateX(20px); }
-        }
-
-        @keyframes head-cycle {
-            40% { transform: rotate(10deg); }
-            100% { transform: rotate(-5deg); }
-        }
-        @keyframes ear-1-cycle {
-            0%, 10%, 20%, 40%, 50%, 100% { transform: rotate(75deg); }
-            5%, 45% { transform: rotate(85deg); }
-            15% { transform: rotate(80deg); }
-        }
-
-        @keyframes ear-2-cycle {
-            0%, 10%, 20%, 30%, 40%, 50%, 70%, 80%, 100% { transform: rotate(5deg); }
-            15%, 75% { transform: rotate(-5deg); }
-            45% { transform: rotate(0deg); }
-        }
-
-        @keyframes sheep-walking-cycle {
-            0% {
-                transform: translateX(650px);
-            }
-            100% {
-                transform: translateX(50px);
-            }
-        }
-        @keyframes eye-blink-cycle {
-            100% {
-                height: 2px;
-                border-radius: 0;
-                margin-top: 5px;
-            }
-        }
-        @keyframes eye-blink-glow-cycle {
-            100% {
-                height: 0;
-                border-radius: 0
-            }
-        }
-
-        /* Interactive Lily Flower */
-        .lily-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            cursor: pointer;
-        }
-
-        .lily {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: all 0.5s ease;
-        }
-
-        .lily-center {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background-color: #FFD700;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .petal {
-            position: absolute;
-            width: 50px;
-            height: 80px;
-            background-color: #FFC0CB;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transform-origin: bottom center;
-            transition: all 0.5s ease;
-        }
-
-        .lily.closed .petal {
-            transform: rotateY(0deg) rotateZ(0deg) translateY(-20px);
-        }
-
-        .lily .petal:nth-child(1) { transform: rotateZ(0deg) translateY(-40px) scale(0.1); }
-        .lily .petal:nth-child(2) { transform: rotateZ(72deg) translateY(-40px) scale(0.1); }
-        .lily .petal:nth-child(3) { transform: rotateZ(144deg) translateY(-40px) scale(0.1); }
-        .lily .petal:nth-child(4) { transform: rotateZ(216deg) translateY(-40px) scale(0.1); }
-        .lily .petal:nth-child(5) { transform: rotateZ(288deg) translateY(-40px) scale(0.1); }
-
-        .lily.open .petal:nth-child(1) { transform: rotateZ(0deg) translateY(-40px) scale(1); }
-        .lily.open .petal:nth-child(2) { transform: rotateZ(72deg) translateY(-40px) scale(1); }
-        .lily.open .petal:nth-child(3) { transform: rotateZ(144deg) translateY(-40px) scale(1); }
-        .lily.open .petal:nth-child(4) { transform: rotateZ(216deg) translateY(-40px) scale(1); }
-        .lily.open .petal:nth-child(5) { transform: rotateZ(288deg) translateY(-40px) scale(1); }
-
-        /* Polaroid Gallery */
-        .polaroid-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .polaroid {
-            width: 250px;
-            height: 300px;
-            background-color: white;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            padding: 15px 15px 60px 15px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s;
-            cursor: pointer;
-        }
-
-        .polaroid-front, .polaroid-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            top: 0;
-            left: 0;
-        }
-
-        .polaroid-back {
-            transform: rotateY(180deg);
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background-color: #f8f8f8;
-        }
-
-        .polaroid.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 80%;
-            object-fit: cover;
-        }
-
-        .polaroid-caption {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            font-family: 'Permanent Marker', cursive;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--dark);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        .timeline-container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -12px;
-            background-color: var(--accent);
-            border: 4px solid var(--dark);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid var(--dark);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--dark);
-        }
-
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--dark);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--dark) transparent transparent;
-        }
-
-        .right::after {
-            left: -12px;
-        }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-        }
-
-        /* Love Letter Envelope */
-        .envelope-container {
-            width: 300px;
-            height: 200px;
-            margin: 30px auto;
-            perspective: 1000px;
-        }
-
-        .envelope {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1s;
-            cursor: pointer;
-        }
-
-        .envelope.open {
-            transform: rotateX(180deg);
-        }
-
-        .envelope-front, .envelope-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-        }
-
-        .envelope-front {
-            background-color: #F5A623;
-            border: var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotateX(0deg);
-        }
-
-        .envelope-back {
-            background-color: white;
-            border: var(--border);
-            transform: rotateX(180deg);
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .envelope-heart {
-            color: red;
-            font-size: 50px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* Confetti */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-            display: none;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            animation: fall 5s linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-            }
-        }
-
-        /* Numbers Section */
-        .numbers-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .number-card {
-            width: 180px;
-            height: 180px;
-            background-color: var(--accent);
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .number-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .number-value {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .number-label {
-            font-size: 16px;
-            text-align: center;
-        }
-
-        /* Admin Section */
-        #admin-password-section {
-            display: none;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        #admin-controls {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .admin-control {
-            margin-bottom: 15px;
-        }
-
-        .admin-control label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .admin-control input {
-            padding: 8px 12px;
-            border: var(--border);
-            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .counter-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-
-        .counter-btn {
-            padding: 5px 10px;
-            background-color: var(--secondary);
-            border: 2px solid black;
-            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
-            cursor: pointer;
-        }
-
-        /* Upcoming Activities */
-        .upcoming-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border: var(--border);
-        }
-
-        .upcoming-table th, .upcoming-table td {
-            padding: 12px;
-            text-align: left;
-            border: 2px solid black;
-        }
-
-        .upcoming-table th {
-            background-color: var(--accent);
-        }
-
-        .upcoming-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .reload-btn {
-            padding: 8px 15px;
-            background-color: var(--secondary);
-            color: white;
-            border: var(--border);
-            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
-            cursor: pointer;
-            margin-top: 15px;
-            display: inline-block;
-        }
-
-        /* Countdown Timer */
-        .countdown-container {
-            margin: 30px auto;
-            text-align: center;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .countdown-item {
-            width: 80px;
-            height: 80px;
-            background-color: var(--secondary);
-            border: var(--border);
-            box-shadow: var(--box-shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .countdown-value {
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .countdown-label {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .countdown-event {
-            margin-top: 15px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* Gifts Section */
-        .gift-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .gift-option {
-            width: 200px;
-            height: 200px;
-            background-color: var(--primary);
-            border: var(--border);
-            box-shadow: var(--box-
-
-box-shadow: var(--box-shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .gift-option:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .gift-date {
-            background-color: white;
-            padding: 5px 10px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            border: 2px solid black;
-        }
-
-        /* Media Queries */
-        @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-container {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-container::before {
-                left: 60px;
-                border: medium solid white;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent white transparent transparent;
-            }
-
-            .left::after, .right::after {
-                left: 15px;
-            }
-
-            .right {
-                left: 0%;
-            }
-        }
+          font-size: 1.5rem;
+        }
+      }
+      :root {
+        --sheep-size: 1rem;
+        --sheep-color: white;
+        --sheep-border: black;
+        --ear-color: #333;
+        --ear-shadow: #222;
+        --leg-color: black;
+        --shadow-color: #888;
+      }
+
+      .sheep-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #e0f7fa;
+      }
+
+      .sheep {
+        position: relative;
+        /* width: calc(8 * var(--sheep-size));
+        height: calc(5 * var(--sheep-size));
+        background: var(--sheep-color);
+        border: 3px solid var(--sheep-border);
+        border-radius: 50%; */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        animation: float 2s ease-in-out infinite;
+      }
+
+      /* Legs */
+      .sheep__leg {
+        position: absolute;
+        width: calc(0.5 * var(--sheep-size));
+        height: calc(2 * var(--sheep-size));
+        background: var(--leg-color);
+        bottom: -1.5rem;
+        border-radius: 10px;
+      }
+
+      .sheep__leg--front {
+        left: 1.2rem;
+      }
+
+      .sheep__leg--middle {
+        left: 2.4rem;
+      }
+
+      .sheep__leg--back {
+        left: 3.6rem;
+      }
+
+      /* Head */
+      .sheep__head {
+        position: absolute;
+        width: calc(2 * var(--sheep-size));
+        height: calc(2 * var(--sheep-size));
+        background: var(--ear-color);
+        border-radius: 50%;
+        top: 1rem;
+        left: -2rem;
+        animation: nod 2s ease-in-out infinite;
+      }
+
+      /* Eyes */
+      .sheep__eye {
+        position: absolute;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: white;
+        border-radius: 50%;
+        top: 0.4rem;
+        left: 0.3rem;
+        box-shadow: 0.3rem 0 0 white;
+      }
+
+      .sheep__eye::after {
+        content: "";
+        position: absolute;
+        width: 0.2rem;
+        height: 0.2rem;
+        background: black;
+        border-radius: 50%;
+        top: 0.15rem;
+        left: 0.15rem;
+        box-shadow: 0.3rem 0 0 black;
+      }
+
+      /* Ears */
+      .sheep__ear {
+        position: absolute;
+        width: 0.5rem;
+        height: 1rem;
+        background: var(--ear-color);
+        border-radius: 50%;
+        top: 0.4rem;
+        transform-origin: top center;
+        animation: bobble 1s infinite ease-in-out;
+      }
+
+      .sheep__ear--left {
+        left: -0.4rem;
+        transform: rotate(-30deg);
+      }
+
+      .sheep__ear--right {
+        right: -0.4rem;
+        transform: rotate(30deg);
+      }
+
+      /* Shadow */
+      .sheep__shadow {
+        position: absolute;
+        width: 100%;
+        height: 0.3rem;
+        background: var(--shadow-color);
+        bottom: -1rem;
+        left: 0;
+        border-radius: 50%;
+        filter: blur(2px);
+        opacity: 0.4;
+        animation: float-shadow 2s ease-in-out infinite;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-0.5rem);
+        }
+      }
+
+      @keyframes float-shadow {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.8);
+        }
+      }
+
+      @keyframes bobble {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(5deg);
+        }
+        75% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes nod {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      /* Past Gifts Section */
+      .past-gifts-section {
+        margin-top: 50px; /* Added margin to separate from birthday card */
+        padding-top: 30px;
+        border-top: 3px dashed var(--dark);
+      }
+
+      .past-gifts-section h3 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .past-gifts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 0 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Loading Screen -->
-    <div id="loading-screen">
+    <div class="loading-screen" id="loadingScreen">
+      <div role="main">
         <div class="sheep">
-            <div class="legs">
-                <div class="leg leg-1"></div>
-                <div class="leg leg-2"></div>
-                <div class="leg leg-3"></div>
-                <div class="leg leg-4"></div>
+          <div class="legs">
+            <div class="leg leg-1"></div>
+            <div class="leg leg-2"></div>
+            <div class="leg leg-3"></div>
+            <div class="leg leg-4"></div>
+          </div>
+          <div class="wool">
+            <div class="piece-of-wool piece-of-wool-1"></div>
+            <div class="wool-shadowlayer">
+              <div class="piece-of-wool piece-of-wool-5"></div>
+              <div class="piece-of-wool piece-of-wool-6"></div>
+              <div class="piece-of-wool piece-of-wool-7"></div>
+              <div class="piece-of-wool piece-of-wool-8"></div>
+              <div class="piece-of-wool piece-of-wool-9"></div>
             </div>
-            <div class="wool">
+            <div class="wool-toplayer">
+              <div class="piece-of-wool piece-of-wool-2"></div>
+              <div class="piece-of-wool piece-of-wool-3"></div>
+              <div class="piece-of-wool piece-of-wool-4"></div>
+              <div class="piece-of-wool piece-of-wool-5"></div>
+              <div class="piece-of-wool piece-of-wool-6"></div>
+              <div class="piece-of-wool piece-of-wool-7"></div>
+              <div class="piece-of-wool piece-of-wool-8"></div>
+              <div class="piece-of-wool piece-of-wool-9"></div>
+              <div class="piece-of-wool piece-of-wool-10"></div>
+            </div>
+          </div>
+          <div class="head">
+            <div class="head-face-front"></div>
+            <div class="head-face"></div>
+            <div class="head-shadow"></div>
+            <div class="ear ear-1"></div>
+            <div class="ear ear-2"></div>
+            <div class="ear ear-2 ear-shadow"></div>
+            <div class="eye eye-1"><div class="glow"></div></div>
+            <div class="eye eye-2"><div class="glow"></div></div>
+            <div class="wool-head">
+              <div class="wool-shadowlayer">
                 <div class="piece-of-wool piece-of-wool-1"></div>
-                <div class="wool-shadowlayer">
-                    <div class="piece-of-wool piece-of-wool-5"></div>
-                    <div class="piece-of-wool piece-of-wool-6"></div>
-                    <div class="piece-of-wool piece-of-wool-7"></div>
-                    <div class="piece-of-wool piece-of-wool-8"></div>
-                    <div class="piece-of-wool piece-of-wool-9"></div>
-                </div>
-                <div class="wool-toplayer">
-                    <div class="piece-of-wool piece-of-wool-2"></div>
-                    <div class="piece-of-wool piece-of-wool-3"></div>
-                    <div class="piece-of-wool piece-of-wool-4"></div>
-                    <div class="piece-of-wool piece-of-wool-5"></div>
-                    <div class="piece-of-wool piece-of-wool-6"></div>
-                    <div class="piece-of-wool piece-of-wool-7"></div>
-                    <div class="piece-of-wool piece-of-wool-8"></div>
-                    <div class="piece-of-wool piece-of-wool-9"></div>
-                    <div class="piece-of-wool piece-of-wool-10"></div>
-                </div>
+                <div class="piece-of-wool piece-of-wool-2"></div>
+                <div class="piece-of-wool piece-of-wool-3"></div>
+              </div>
+              <div class="piece-of-wool piece-of-wool-1"></div>
+              <div class="piece-of-wool piece-of-wool-2"></div>
+              <div class="piece-of-wool piece-of-wool-3"></div>
             </div>
-            <div class="head">
-                <div class="head-face-front"></div>
-                <div class="head-face"></div>
-                <div class="head-shadow"></div>
-                <div class="ear ear-1"></div>
-                <div class="ear ear-2"></div>
-                <div class="ear ear-2 ear-shadow"></div>
-                <div class="eye eye-1">
-                    <div class="glow"></div>
-                </div>
-                <div class="eye eye-2">
-                    <div class="glow"></div>
-                </div>
-                <div class="wool-head">
-                    <div class="wool-shadowlayer">
-                        <div class="piece-of-wool piece-of-wool-1"></div>
-                        <div class="piece-of-wool piece-of-wool-2"></div>
-                        <div class="piece-of-wool piece-of-wool-3"></div>
-                    </div>
-                    <div class="piece-of-wool piece-of-wool-1"></div>
-                    <div class="piece-of-wool piece-of-wool-2"></div>
-                    <div class="piece-of-wool piece-of-wool-3"></div>
-                </div>
-            </div>
+          </div>
         </div>
-        <div id="loading-bar-container">
-            <div id="loading-bar"></div>
-        </div>
+      </div>
+      <!-- <div class="sheep-loading"></div> -->
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
     </div>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1 class="main-title">ALMOND&BLUEBERRY INC</h1>
-            <h2 class="subtitle" id="day-counter">1028 Days Together - Love you <i class="fas fa-heart" style="color: red;"></i></h2>
-            <div class="tilt-wrapper">
-                <h2 class="subtitle tilt-element" id="special-day-title">Happy Birthday, My Almond! 🎉</h2>
-            </div>
-        </header>
+    <div class="container" id="mainContent">
+      <!-- Header -->
+      <header>
+        <h1>ALMOND&BLUEBERRY INC</h1>
+        <p class="day-counter" id="dayCounter">
+          <span id="together-count"></span> Days Together
+        </p>
+        <p class="birthday-title" id="birthdayTitle">
+          Happy Birthday, My Almond! 🎉
+        </p>
+      </header>
 
-        <!-- Navigation -->
-        <nav>
-            <a href="#" class="nav-item" id="nav-unlock" onclick="showSection('password')">
-                <i class="fas fa-lock"></i> Unlock
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-agreement" onclick="showSection('agreement')">
-                <i class="fas fa-handshake"></i> Agreement
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-special" onclick="showSection('special')">
-                <i class="fas fa-gift"></i> Today's Special
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-memories" onclick="showSection('memories')">
-                <i class="fas fa-camera"></i> Our Memories
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-activities" onclick="showSection('activities')">
-                <i class="fas fa-calendar-alt"></i> Upcoming Activities
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-nextday" onclick="showSection('nextday')">
-                <i class="fas fa-hourglass-half"></i> Next Special Day
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-gift" onclick="showSection('gift')">
-                <i class="fas fa-gift"></i> Gift
-            </a>
-            <a href="#" class="nav-item disabled" id="nav-admin" onclick="showAdminSection()">
-                <i class="fas fa-user-shield"></i> Admin
-            </a>
-        </nav>
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="nav-item active" data-section="unlock">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Unlock
+        </div>
+        <div class="nav-item disabled" data-section="agreement">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-3.08"
+            ></path>
+            <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+            <rect x="8" y="10" width="8" height="6" rx="1"></rect>
+          </svg>
+          Agreement
+        </div>
+        <div class="nav-item disabled" data-section="special">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+          Today's Special
+        </div>
+        <div class="nav-item disabled" data-section="memories">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          Our Memories
+        </div>
+        <div class="nav-item disabled" data-section="upcoming">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Upcoming Activities
+        </div>
+        <div class="nav-item disabled" data-section="nextSpecial">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 8a7 7 0 1 0 0 14 7 7 0 1 0 0-14Z"></path>
+            <path d="M12 2v3"></path>
+            <path d="M12 21v-3"></path>
+            <path d="M4.93 4.93l1.41 1.41"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h3"></path>
+            <path d="M19 12h3"></path>
+            <path d="M6.34 17.66l-1.41 1.41"></path>
+            <path d="M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          Next Special Day
+        </div>
+        <div class="nav-item disabled" data-section="gift">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+            <path d="M12 8v13"></path>
+            <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+            <path
+              d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"
+            ></path>
+          </svg>
+          Gift
+        </div>
+        <div class="nav-item disabled" data-section="admin">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+          </svg>
+          Admin
+        </div>
+      </nav>
 
-        <!-- Password Section -->
-        <section id="password-section" class="neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-lock"></i> Password Required</h2>
-            <div>
-                <input type="password" id="password-input" class="password-input" placeholder="Enter password">
-                <button class="submit-btn" onclick="checkPassword()">Submit</button>
-            </div>
-            <p class="hint">Hint: the password is what i like the most almondplusgame</p>
-        </section>
+      <!-- Unlock Section -->
+      <section class="section" id="unlock">
+        <h2 class="section-title">Welcome! Please Unlock</h2>
+        <div class="password-container">
+          <p class="typewriter-text">
+            Hi Almond! This website is just for you! To access all the special
+            content, please enter the secret password.
+          </p>
+          <input
+            type="password"
+            class="password-input"
+            id="passwordInput"
+            placeholder="Enter Password"
+          />
+          <button class="password-button" id="passwordButton">Unlock</button>
+          <p class="password-hint">
+            Hint: the password is what I like the most
+          </p>
+        </div>
+      </section>
 
-        <!-- Agreement Section -->
-        <section id="agreement-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-handshake"></i> Our Agreement</h2>
-            <div id="agreement-content" class="typewriter-text">
-                <p>In our relationship, we've promised to:</p>
-                <ul>
-                    <li>Always communicate openly and honestly, even when it's difficult</li>
-                    <li>Support each other's dreams and goals without judgment</li>
-                    <li>Make time for each other, even when life gets busy</li>
-                    <li>Never go to sleep angry - resolve conflicts before bedtime</li>
-                    <li>Celebrate each other's victories, no matter how small</li>
-                    <li>Always remember why we fell in love in the first place</li>
-                    <li>Keep our relationship exciting by trying new things together</li>
-                    <li>Give each other space when needed, without taking offense</li>
-                    <li>Be each other's best friend and confidant</li>
-                    <li>Love each other unconditionally, through all of life's ups and downs</li>
-                </ul>
-                <p>This is our promise to each other, today and always.</p>
-            </div>
-        </section>
+      <!-- Agreement Section -->
+      <section class="section hidden" id="agreement">
+        <h2 class="section-title">Our Agreement</h2>
+        <div class="typewriter-text">
+          Here are the things we've promised each other during our relationship:
+        </div>
+        <ul style="margin-top: 20px; padding-left: 20px">
+          <li>
+            We will always communicate honestly, even when it's difficult.
+          </li>
+          <li>We will respect each other's personal space and time.</li>
+          <li>We will make decisions together for important matters.</li>
+          <li>We will support each other's goals and dreams.</li>
+          <li>We will never go to bed angry with each other.</li>
+          <li>We will always celebrate our special days together.</li>
+          <li>We will take at least one trip together every year.</li>
+        </ul>
+      </section>
 
-        <!-- Today's Special Section -->
-        <section id="special-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-gift"></i> Today's Special</h2>
-            <div id="special-content" class="typewriter-text">
-                <p>My dearest Almond,</p>
-                <p>Happy Birthday to the most wonderful person in my life! Today is all about celebrating you and the incredible joy you bring into my world every single day.</p>
-                <p>From the moment you walk into a room with your beautiful smile to the way you laugh at my silly jokes, you make my heart skip a beat. Your kindness, intelligence, and compassion inspire me to be a better person.</p>
-                <p>This past year has been an amazing journey together, and I'm looking forward to many more adventures, challenges, and precious moments with you.</p>
-                <p>May this year bring you all the happiness you deserve and may all your wishes come true.</p>
-                <p>I love you more than words can express,</p>
-                <p>Your Blueberry ❤️</p>
-            </div>
-            
-            <div class="lily-container" onclick="toggleLily()">
-                <div class="lily closed">
-                    <div class="lily-center"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                </div>
-            </div>
-        </section>
+      <!-- Today's Special Section -->
+      <section class="section hidden" id="special">
+        <h2 class="section-title">Today's Special Message</h2>
+        <div class="typewriter-text">
+          <div
+            id="letter-content"
+            style="white-space: pre-wrap; padding: 20px; font-family: serif"
+          ></div>
+        </div>
+      </section>
 
-        <!-- Our Memories Section -->
-        <section id="memories-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-camera"></i> Our Memories</h2>
-            
-            <div class="timeline">
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h2>First Date</h2>
-                        <p>January 15, 2022</p>
-                        <p>We met at that little coffee shop downtown. You were wearing that blue dress that made your eyes shine even brighter.</p>
-                    </div>
-                </div>
-                <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <h2>First Trip Together</h2>
-                        <p>March 20, 2022</p>
-                        <p>Our weekend getaway to the mountains. We got lost, found that amazing viewpoint, and watched the sunset together.</p>
-                    </div>
-                </div>
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h2>Moving In Together</h2>
-                        <p>August 5, 2022</p>
-                        <p>The day we combined our book collections and realized we had two toasters but no microwave.</p>
-                    </div>
-                </div>
-                <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <h2>First Anniversary</h2>
-                        <p>January 15, 2023</p>
-                        <p>Dinner at that fancy restaurant where the waiter thought we were celebrating our wedding anniversary.</p>
-                    </div>
-                </div>
+      <!-- Our Memories Section -->
+      <section class="section hidden" id="memories">
+        <h2 class="section-title">Our Memories</h2>
+        <div class="typewriter-text">
+          Here are some of my favorite moments with you, my precious Almond!
+          Click on the photos to see what makes these memories so special.
+        </div>
+        <div id="memory-id"></div>
+        <h3 style="margin-top: 30px; margin-bottom: 15px">Us in Numbers</h3>
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-number">
+              <span id="together-count"></span>
             </div>
-            
-            <h3 style="margin-top: 40px; text-align: center;">Polaroid Memories</h3>
-            <div class="polaroid-container">
-                <div class="polaroid" onclick="flipPolaroid(this)">
-                    <div class="polaroid-front">
-                        <img src="/api/placeholder/220/220" alt="Beach Vacation">
-                        <div class="polaroid-caption">Summer Beach Day</div>
-                    </div>
-                    <div class="polaroid-back">
-                        <p>Remember when we built that giant sand castle and then the tide came in? Your laugh when it all washed away still echoes in my heart.</p>
-                    </div>
-                </div>
-                <div class="polaroid" onclick="flipPolaroid(this)">
-                    <div class="polaroid-front">
-                        <img src="/api/placeholder/220/220" alt="Movie Night">
-                        <div class="polaroid-caption">Movie Marathon Night</div>
-                    </div>
-                    <div class="polaroid-back">
-                        <p>Six movies back-to-back, too much popcorn, and you still stayed awake for all of them. I fell asleep during the fifth one!</p>
-                    </div>
-                </div>
-                <div class="polaroid" onclick="flipPolaroid(this)">
-                    <div class="polaroid-front">
-                        <img src="/api/placeholder/220/220" alt="Hiking">
-                        <div class="polaroid-caption">Mountain Hike</div>
-                    </div>
-                    <div class="polaroid-back">
-                        <p>The hike was tough but the view (and company) was worth every step. You're my favorite adventure partner.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 style="margin-top: 40px; text-align: center;">Us in Numbers</h3>
-            <div class="numbers-container">
-                <div class="number-card">
-                    <div class="number-value" id="days-together">1028</div>
-                    <div class="number-label">Days Together</div>
-                </div>
-                <div class="number-card">
-                    <div class="number-value">12</div>
-                    <div class="number-label">Trips Together</div>
-                </div>
-                <div class="number-card">
-                    <div class="number-value">7</div>
-                    <div class="number-label">Arguments (Resolved!)</div>
-                </div>
-                <div class="number-card">
-                    <div class="number-value">43</div>
-                    <div class="number-label">Movies Watched</div>
-                </div>
-                <div class="number-card">
-                    <div class="number-value">15</div>
-                    <div class="number-label">Books Read</div>
-                </div>
-                <div class="number-card">
-                    <div class="number-value">86</div>
-                    <div class="number-label">Exercise Sessions</div>
-                </div>
-            </div>
-        </section>
+            <div class="stat-label">Days Together</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Trips Together</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Arguments</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">36</div>
+            <div class="stat-label">Movies Watched</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Books Read</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">65</div>
+            <div class="stat-label">Days Exercised</div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Upcoming Activities Section -->
-        <section id="activities-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Activities</h2>
-            
-            <h3>Planned Trips</h3>
-            <table class="upcoming-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Destination</th>
-                        <th>Duration</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>May 20, 2025</td>
-                        <td>Beach Weekend</td>
-                        <td>3 days</td>
-                        <td>Beachfront rental booked</td>
-                    </tr>
-                    <tr>
-                        <td>July 1-15, 2025</td>
-                        <td>Europe Adventure</td>
-                        <td>2 weeks</td>
-                        <td>Paris, Rome, Barcelona</td>
-                    </tr>
-                    <tr>
-                        <td>September 10, 2025</td>
-                        <td>Mountain Cabin</td>
-                        <td>4 days</td>
-                        <td>Anniversary celebration</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class="reload-btn" onclick="reloadTripsData()"><i class="fas fa-sync-alt"></i> Reload Data</button>
-            
-            <h3 style="margin-top: 30px;">Future Plans</h3>
-            <div id="plans-container">
-                <div class="neubrutalism-box" style="margin-top: 20px;">
-                    <h4>Summer Garden Project</h4>
-                    <p>Let's plant those flowers you've been talking about and create our own little garden oasis on the balcony!</p>
-                </div>
-                <div class="neubrutalism-box" style="margin-top: 20px;">
-                    <h4>Cooking Classes</h4>
-                    <p>Remember we talked about taking Italian cooking classes together? I found a great place that offers weekend sessions.</p>
-                </div>
-                <div class="neubrutalism-box" style="margin-top: 20px;">
-                    <h4>Learn To Dance</h4>
-                    <p>Ballroom dancing lessons - I promise not to step on your toes (too much)!</p>
-                </div>
-            </div>
-        </section>
+      <!-- Upcoming Activities Section -->
+      <section class="section hidden" id="upcoming">
+        <h2 class="section-title">Upcoming Activities</h2>
+        <div class="typewriter-text">
+          Here are our planned adventures for the coming months! I can't wait to
+          create more memories with you.
+        </div>
 
-        <!-- Next Special Day Section -->
-        <section id="nextday-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-hourglass-half"></i> Next Special Day</h2>
-            
-            <div class="countdown-container">
-                <div class="countdown-event">Valentine's Day</div>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-days">311</div>
-                        <div class="countdown-label">Days</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-hours">7</div>
-                        <div class="countdown-label">Hours</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-minutes">45</div>
-                        <div class="countdown-label">Minutes</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-seconds">12</div>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="neubrutalism-box" style="margin-top: 30px;">
-                <h3>Upcoming Special Days</h3>
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> May 12, 2025 - Our Dating Anniversary</li>
-                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> July 20, 2025 - Your Mom's Birthday</li>
-                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> August 15, 2025 - Our Trip Anniversary</li>
-                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> October 31, 2025 - Halloween Party</li>
-                    <li style="margin: 10px 0;"><i class="fas fa-calendar-day"></i> December 25, 2025 - Christmas Together</li>
-                </ul>
-            </div>
-        </section>
+        <h3 style="margin-top: 20px; margin-bottom: 10px">Upcoming Trips</h3>
+        <div id="trip-table-container"></div>
 
-        <!-- Gift Section -->
-        <section id="gift-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-gift"></i> Gift</h2>
-            
-            <div class="gift-options">
-                <div class="gift-option" onclick="showPastGift('2023-04-09')">
-                    <div class="gift-date">April 9, 2023</div>
-                    <i class="fas fa-birthday-cake fa-3x"></i>
-                </div>
-                <div class="gift-option" onclick="showPastGift('2023-12-25')">
-                    <div class="gift-date">Dec 25, 2023</div>
-                    <i class="fas fa-holly-berry fa-3x"></i>
-                </div>
-                <div class="gift-option" onclick="showPastGift('2024-02-14')">
-                    <div class="gift-date">Feb 14, 2024</div>
-                    <i class="fas fa-heart fa-3x"></i>
-                </div>
-                <div class="gift-option" onclick="showPastGift('2024-04-09')">
-                    <div class="gift-date">April 9, 2024</div>
-                    <i class="fas fa-birthday-cake fa-3x"></i>
-                </div>
-                <div class="gift-option" onclick="showBirthdayCard()">
-                    <div class="gift-date">April 9, 2025</div>
-                    <i class="fas fa-gift fa-3x"></i>
-                </div>
-            </div>
-            
-            <div id="birthday-card" style="display: none; margin-top: 40px;">
-                <h3 style="text-align: center; margin-bottom: 20px;">Your Birthday Card</h3>
-                
-                <div class="envelope-container">
-                    <div class="envelope" onclick="toggleEnvelope()">
-                        <div class="envelope-front">
-                            <div class="envelope-heart">
-                                <i class="fas fa-heart"></i>
-                            </div>
+        <button class="password-button" style="margin-top: 15px">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="margin-right: 5px"
+          >
+            <path d="M21 2v6h-6"></path>
+            <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+            <path d="M3 12a9 9 0 0 0 15 6.7L21 16"></path>
+            <path d="M21 22v-6h-6"></path>
+          </svg>
+          Reload Trip Data
+        </button>
+
+        <h3 style="margin-top: 30px; margin-bottom: 10px">Upcoming Plans</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <div class="nav-item">Weekend Getaway</div>
+          <div class="nav-item">Game Night</div>
+          <div class="nav-item">Cooking Class</div>
+          <div class="nav-item">Movie Marathon</div>
+          <div class="nav-item">Surprise Date</div>
+        </div>
+      </section>
+
+      <!-- Next Special Day Section -->
+      <section class="section hidden" id="nextSpecial">
+        <h2 class="section-title">Next Special Day</h2>
+        <div class="typewriter-text">
+          Here's a countdown to our next important celebration!
+        </div>
+
+        <div class="countdown-container">
+          <div class="countdown-number" id="countdownNumber">37</div>
+          <div class="countdown-label">days until our Anniversary!</div>
+        </div>
+
+        <h3 style="margin-top: 30px; margin-bottom: 10px">
+          Upcoming Special Days
+        </h3>
+        <ul style="list-style-type: none; padding: 0">
+          <li
+            style="
+              padding: 10px;
+              margin-bottom: 10px;
+              background-color: var(--light);
+              border: 2px solid var(--dark);
+            "
+          >
+            <strong>May 16, 2025</strong> - Our Anniversary (1062 days together)
+          </li>
+          <li
+            style="
+              padding: 10px;
+              margin-bottom: 10px;
+              background-color: var(--light);
+              border: 2px solid var(--dark);
+            "
+          >
+            <strong>July 4, 2025</strong> - Independence Day Holiday (Planning a
+            BBQ)
+          </li>
+          <li
+            style="
+              padding: 10px;
+              margin-bottom: 10px;
+              background-color: var(--light);
+              border: 2px solid var(--dark);
+            "
+          >
+            <strong>October 31, 2025</strong> - Halloween Costume Party
+          </li>
+          <li
+            style="
+              padding: 10px;
+              margin-bottom: 10px;
+              background-color: var(--light);
+              border: 2px solid var(--dark);
+            "
+          >
+            <strong>December 25, 2025</strong> - Christmas (Planning to visit
+            your parents)
+          </li>
+        </ul>
+      </section>
+
+      <!-- Gift Section -->
+      <section class="section hidden" id="gift">
+        <h2 class="section-title">Special Gift</h2>
+        <div class="typewriter-text">
+          Happy Birthday, my sweet Almond! Here's a special gift just for you.
+        </div>
+
+        <div class="gift-container">
+          <div class="birthdayEnvelope_1" id="birthdayEnvelope">
+            <div class="birthdayCard_1" id="birthdayCard_1">
+              <div class="cardFront_1">
+                <div class="sun_1"></div>
+                <div class="sun-rays_1"></div>
+                <h3 class="happy_1">Happy Birthday Almond!</h3>
+                <div class="sheep-container_1">
+                  <div class="sheep_1">
+                    <div class="legs_1">
+                      <div class="leg_1 leg-1_1"></div>
+                      <div class="leg_1 leg-2_1"></div>
+                      <div class="leg_1 leg-3_1"></div>
+                      <div class="leg_1 leg-4_1"></div>
+                    </div>
+                    <div class="wool_1">
+                      <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+                      <div class="wool-shadowlayer_1">
+                        <div class="piece-of-wool_1 piece-of-wool-5_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-6_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-7_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-8_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-9_1"></div>
+                      </div>
+                      <div class="wool-toplayer_1">
+                        <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-4_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-5_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-6_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-7_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-8_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-9_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-10_1"></div>
+                      </div>
+                    </div>
+                    <div class="head_1">
+                      <div class="head-face-front_1"></div>
+                      <div class="head-face_1"></div>
+                      <div class="head-shadow_1"></div>
+                      <div class="ear_1 ear-1_1"></div>
+                      <div class="ear_1 ear-2_1"></div>
+                      <div class="ear_1 ear-2_1 ear-shadow_1"></div>
+                      <div class="eye_1 eye-1_1">
+                        <div class="glow_1"></div>
+                      </div>
+                      <div class="eye_1 eye-2_1">
+                        <div class="glow_1"></div>
+                      </div>
+                      <div class="wool-head_1">
+                        <div class="wool-shadowlayer_1">
+                          <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+                          <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                          <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
                         </div>
-                        <div class="envelope-back">
-                            <p style="font-size: 18px; text-align: center;">My Dearest Almond,</p>
-                            <p style="margin-top: 10px;">On your special day, I want you to know how much you mean to me. You're my best friend, my confidant, my partner in crime, and the love of my life.</p>
-                            <p style="margin-top: 10px;">Your kindness, your humor, your intelligence, and your beautiful heart make every day brighter. I'm so grateful for all the moments we've shared, and I look forward to creating countless more memories together.</p>
-                            <p style="margin-top: 10px;">Happy Birthday, my love. May this year bring you all the joy, success, and adventure you deserve.</p>
-                            <p style="margin-top: 10px; text-align: right;">Forever yours,<br>Blueberry ❤️</p>
-                        </div>
+                        <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                        <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                
-                <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="startConfetti()" class="submit-btn">Click for a Birthday Surprise!</button>
+                <div class="fence-posts_1">
+                  <div class="fence-post_1"></div>
+                  <div class="fence-post_1"></div>
+                  <div class="fence-post_1"></div>
+                  <div class="fence-post_1"></div>
+                  <div class="fence-post_1"></div>
                 </div>
+                <div class="fence_1"></div>
+                <div class="grass_1">
+                  <div class="grass-blades_1"></div>
+                </div>
+                <div class="caption_1">Baa Baa Happy Birthday!</div>
+              </div>
+              <div class="cardInside_1">
+                <div class="cardInsideLetter_1">
+                  <p>
+                    Here's a generated passage of Lorem Ipsum: Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id
+                    est laborum. If you need more or a specific amount, feel
+                    free to let me know!
+                  </p>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- Admin Section -->
-        <section id="admin-section" class="content-section neubrutalism-box">
-            <h2 class="section-title"><i class="fas fa-user-shield"></i> Admin</h2>
-            
-            <div id="admin-password-section">
-                <input type="password" id="admin-password-input" class="password-input" placeholder="Enter admin password">
-                <button class="submit-btn" onclick="checkAdminPassword()">Submit</button>
-            </div>
-            
-            <div id="admin-controls">
-                <div class="admin-control">
-                    <label for="days-together-input">Days Together:</label>
-                    <input type="number" id="days-together-input" value="1028">
-                    <div class="counter-controls">
-                        <button class="counter-btn" onclick="updateCounter('minus')">-</button>
-                        <button class="counter-btn" onclick="updateCounter('plus')">+</button>
-                        <button class="counter-btn" onclick="saveCounter()">Save</button>
-                    </div>
-                </div>
-                
-                <div class="admin-control">
-                    <label for="special-day-toggle">Show Birthday Title:</label>
-                    <input type="checkbox" id="special-day-toggle" checked onchange="toggleSpecialDay()">
-                </div>
-            </div>
-        </section>
+        <h3 style="margin-top: 30px; margin-bottom: 10px">Past Gifts</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+          "
+        >
+          <div class="stat-card">
+            <div style="font-weight: bold">Valentine's Day 2023</div>
+            <div>Heart-shaped Necklace</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-weight: bold">Christmas 2023</div>
+            <div>Cozy Sweater</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-weight: bold">Anniversary 2024</div>
+            <div>Weekend Trip</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-weight: bold">Valentine's Day 2024</div>
+            <div>Custom Photo Album</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin Section -->
+      <section class="section hidden" id="admin">
+        <h2 class="section-title">Admin Panel</h2>
+        <div class="password-container">
+          <p>
+            This area is for website administration. Please enter the Level 2
+            password.
+          </p>
+          <input
+            type="password"
+            class="password-input"
+            id="adminPasswordInput"
+            placeholder="Admin Password"
+          />
+          <button class="password-button" id="adminPasswordButton">
+            Access Admin
+          </button>
+        </div>
+
+        <div class="admin-controls hidden" id="adminControls">
+          <h3 style="margin-top: 20px; margin-bottom: 10px">Day Counter</h3>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <button class="password-button" id="decreaseDay">-</button>
+            <!-- <span id="currentDayCount">1028</span> -->
+            <span id="together-count"></span>
+            <button class="password-button" id="increaseDay">+</button>
+            <button class="password-button" id="updateDay">
+              Update Counter
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <!-- Confetti Container -->
-    <div class="confetti-container" id="confetti-container"></div>
-
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
-        // Loading Screen
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('loading-bar').style.width = '100%';
-            }, 100);
-            
-            setTimeout(function() {
-                document.getElementById('loading-screen').style.display = 'none';
-            }, 1500);
-        };
+      // Variables
+      const correctPassword = "1";
+      const adminPassword = "admin123"; // You will replace this
+      let isDaySpecial = true; // Set to true for birthday, false for normal day
 
-        // Password Check
-        function checkPassword() {
-            const password = document.getElementById('password-input').value;
-            if (password === 'almondplusgame') {
-                unlockContent();
-            } else {
-                alert('Incorrect password. Try again!');
+      // DOM Elements
+      const loadingScreen = document.getElementById("loadingScreen");
+      const mainContent = document.getElementById("mainContent");
+      const dayCounter = document.getElementById("dayCounter");
+      const birthdayTitle = document.getElementById("birthdayTitle");
+      const passwordInput = document.getElementById("passwordInput");
+      const passwordButton = document.getElementById("passwordButton");
+      const adminPasswordInput = document.getElementById("adminPasswordInput");
+      const adminPasswordButton = document.getElementById(
+        "adminPasswordButton"
+      );
+      const adminControls = document.getElementById("adminControls");
+      const currentDayCount = document.getElementById("currentDayCount");
+      const decreaseDay = document.getElementById("decreaseDay");
+      const increaseDay = document.getElementById("increaseDay");
+      const updateDay = document.getElementById("updateDay");
+      const birthdayEnvelope = document.getElementById("birthdayEnvelope");
+      const navItems = document.querySelectorAll(".nav-item");
+      const sections = document.querySelectorAll(".section");
+
+      // Functions
+      function hideLoadingScreen() {
+        setTimeout(() => {
+          loadingScreen.style.opacity = "0";
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+            mainContent.style.display = "block";
+
+            // Show or hide birthday title based on flag
+            if (!isDaySpecial) {
+              birthdayTitle.style.display = "none";
             }
-        }
+          }, 500);
+        }, 1500);
+      }
 
-        function unlockContent() {
-            document.getElementById('password-section').style.display = 'none';
-            
-            // Enable all nav items
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.classList.remove('disabled');
-            });
-            
-            // Show agreement section
-            showSection('agreement');
-        }
+      function unlockContent() {
+        // Check if password is correct
+        if (passwordInput.value === correctPassword) {
+          // Enable all nav items
+          navItems.forEach((item) => {
+            item.classList.remove("disabled");
+            item.classList.remove("active");
+          });
 
-        // Section Navigation
-        function showSection(sectionId) {
-            // Hide all content sections
-            const contentSections = document.querySelectorAll('.content-section');
-            contentSections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show the selected section
-            document.getElementById(sectionId + '-section').classList.add('active');
-            
-            // Apply typewriter effect to the content
-            applyTypewriterEffect(sectionId + '-content');
-        }
+          // Activate the agreement tab
+          document
+            .querySelector('[data-section="agreement"]')
+            .classList.add("active");
 
-        function applyTypewriterEffect(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.style.width = '0';
-                setTimeout(() => {
-                    element.style.width = '100%';
-                }, 100);
-            }
-        }
+          // Hide all sections
+          sections.forEach((section) => {
+            section.classList.add("hidden");
+          });
 
-        // Lily Animation
-        function toggleLily() {
-            const lily = document.querySelector('.lily');
-            lily.classList.toggle('closed');
-            lily.classList.toggle('open');
-        }
+          // Show agreement section
+          document.getElementById("agreement").classList.remove("hidden");
 
-        // Polaroid Flip Animation
-        function flipPolaroid(polaroid) {
-            polaroid.classList.toggle('flipped');
-        }
+          // Create confetti effect
+          createConfetti();
 
-        // Birthday Card and Envelope
-        function showBirthdayCard() {
-            document.getElementById('birthday-card').style.display = 'block';
-            
-            // Scroll to the card
+          // Add password success animation
+          passwordButton.style.backgroundColor = "#4CAF50";
+          passwordButton.textContent = "Unlocked!";
+          setTimeout(() => {
+            passwordButton.style.backgroundColor = "";
+            passwordButton.textContent = "Unlock";
+          }, 2000);
+        } else {
+          // Add password error animation
+          passwordInput.style.borderColor = "#FF6B6B";
+          passwordButton.style.backgroundColor = "#FF6B6B";
+          setTimeout(() => {
+            passwordInput.style.borderColor = "";
+            passwordButton.style.backgroundColor = "";
+          }, 1000);
+        }
+      }
+
+      function unlockAdmin() {
+        if (adminPasswordInput.value === adminPassword) {
+          adminControls.classList.remove("hidden");
+          adminPasswordButton.style.backgroundColor = "#4CAF50";
+          adminPasswordButton.textContent = "Access Granted";
+          setTimeout(() => {
+            adminPasswordButton.style.backgroundColor = "";
+            adminPasswordButton.textContent = "Access Admin";
+          }, 2000);
+        } else {
+          adminPasswordInput.style.borderColor = "#FF6B6B";
+          adminPasswordButton.style.backgroundColor = "#FF6B6B";
+          setTimeout(() => {
+            adminPasswordInput.style.borderColor = "";
+            adminPasswordButton.style.backgroundColor = "";
+          }, 1000);
+        }
+      }
+
+      function createConfetti() {
+        for (let i = 0; i < 100; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor = [
+            "#FF6B6B",
+            "#4ECDC4",
+            "#FFD166",
+            "#F7F9F9",
+          ][Math.floor(Math.random() * 4)];
+          confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+          confetti.style.animationDelay = Math.random() * 2 + "s";
+          document.body.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, 5000);
+        }
+      }
+
+      function applyTypewriterEffect() {
+        const typewriterElements =
+          document.querySelectorAll(".typewriter-text");
+        typewriterElements.forEach((element) => {
+          // Reset the animation
+          element.style.animation = "none";
+          // Trigger reflow
+          void element.offsetWidth;
+          // Restart the animation
+          element.style.animation =
+            "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite";
+        });
+      }
+
+      // Event Listeners
+      window.addEventListener("load", hideLoadingScreen);
+
+      passwordButton.addEventListener("click", unlockContent);
+      passwordInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          unlockContent();
+        }
+      });
+
+      adminPasswordButton.addEventListener("click", unlockAdmin);
+      adminPasswordInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          unlockAdmin();
+        }
+      });
+
+      decreaseDay.addEventListener("click", function () {
+        let count = parseInt(currentDayCount.textContent);
+        count--;
+        currentDayCount.textContent = count;
+      });
+
+      increaseDay.addEventListener("click", function () {
+        let count = parseInt(currentDayCount.textContent);
+        count++;
+        currentDayCount.textContent = count;
+      });
+
+      updateDay.addEventListener("click", function () {
+        dayCounter.textContent = currentDayCount.textContent + " Days Together";
+      });
+
+      birthdayEnvelope.addEventListener("click", function () {
+        createConfetti();
+      });
+
+      // Navigation
+      navItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          if (this.classList.contains("disabled")) return;
+
+          // Update active state
+          navItems.forEach((nav) => nav.classList.remove("active"));
+          this.classList.add("active");
+
+          // Show corresponding section
+          const sectionId = this.getAttribute("data-section");
+          sections.forEach((section) => {
+            section.classList.add("hidden");
+          });
+          document.getElementById(sectionId).classList.remove("hidden");
+
+          // Apply typewriter effect on section change
+          applyTypewriterEffect();
+        });
+      });
+
+      // Mock functions for the future implementation
+      function scrawlGoogleDrive() {
+        console.log(
+          "This function will scrawl Google Drive for photos in the future"
+        );
+        // This is a placeholder for the actual implementation
+        return [
+          {
+            date: "20250201_FirstDate_Our first coffee together",
+            url: "/path/to/image1.jpg",
+          },
+          {
+            date: "20250315_MovieNight_Watching our favorite film",
+            url: "/path/to/image2.jpg",
+          },
+        ];
+      }
+
+      function scrawlGoogleSheet() {
+        console.log(
+          "This function will scrawl Google Sheet for trip data in the future"
+        );
+        // This is a placeholder for the actual implementation
+        return [
+          {
+            date: "May 15-20, 2025",
+            destination: "Bali, Indonesia",
+            duration: "6 days",
+            activities: "Beach, Hiking, Temple Tours",
+          },
+          {
+            date: "July 3-5, 2025",
+            destination: "Mountain Cabin",
+            duration: "3 days",
+            activities: "Stargazing, Hiking, Board Games",
+          },
+          {
+            date: "September 10-18, 2025",
+            destination: "Paris, France",
+            duration: "9 days",
+            activities: "Museums, Food Tour, Shopping",
+          },
+        ];
+      }
+
+      function scrawlGoogleCalendar() {
+        console.log(
+          "This function will scrawl Google Calendar for special days in the future"
+        );
+        // This is a placeholder for the actual implementation
+        return [
+          {
+            date: "May 16, 2025",
+            title: "Our Anniversary",
+            description: "1062 days together",
+          },
+          {
+            date: "July 4, 2025",
+            title: "Independence Day Holiday",
+            description: "Planning a BBQ",
+          },
+          {
+            date: "October 31, 2025",
+            title: "Halloween Costume Party",
+            description: "",
+          },
+          {
+            date: "December 25, 2025",
+            title: "Christmas",
+            description: "Planning to visit your parents",
+          },
+        ];
+      }
+      const card = document.getElementById("birthdayCard_1");
+
+      card.addEventListener("click", function () {
+        this.classList.toggle("touched");
+        createConfetti();
+      });
+
+      // Add confetti effect
+      function createConfetti() {
+        const colors = [
+          "#ff6b6b",
+          "#ff8e8e",
+          "#ffb3b3",
+          "#ffd8d8",
+          "#a8edea",
+          "#fed6e3",
+        ];
+        const cardFront = document.querySelector(".cardFront_1");
+
+        // Remove existing confetti
+        const existingConfetti = document.querySelectorAll(".confetti");
+        existingConfetti.forEach((el) => el.remove());
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + "%";
+          confetti.style.top = Math.random() * 100 + "%";
+          confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+          confetti.style.width = Math.random() * 10 + 5 + "px";
+          confetti.style.height = Math.random() * 10 + 5 + "px";
+          confetti.style.opacity = "0.8";
+          confetti.style.position = "absolute";
+          confetti.style.borderRadius = "50%";
+
+          cardFront.appendChild(confetti);
+
+          // Animate confetti
+          setTimeout(() => {
+            confetti.style.transition = "all 1s ease-out";
+            confetti.style.opacity = "0";
+            confetti.style.transform =
+              "translateY(100px) rotate(" + Math.random() * 360 + "deg)";
+
+            // Remove after animation
             setTimeout(() => {
-                document.getElementById('birthday-card').scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+              confetti.remove();
+            }, 1000);
+          }, Math.random() * 1000);
+        }
+      }
+
+      // Make card interactive on mobile
+      let touchStartX = 0;
+
+      card.addEventListener(
+        "touchstart",
+        function (e) {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        false
+      );
+
+      card.addEventListener(
+        "touchend",
+        function (e) {
+          const touchEndX = e.changedTouches[0].screenX;
+          if (Math.abs(touchEndX - touchStartX) < 10) {
+            // It's a tap, not a swipe
+            this.classList.toggle("touched");
+            createConfetti();
+          }
+        },
+        false
+      );
+      function extractDateFromFilename(filename) {
+        // Try to match a date like 2024-04-09_14-30
+        const match = filename.match(/(\d{2}-\d{2}-\d{2})/);
+        if (match) {
+          const [_, date] = match;
+          return new Date(`20${date}T00:00:00`); // Convert to Date object
+        }
+        return new Date(0); // Fallback to old date if no match
+      }
+      function parseMemoryItemToCard(memoryItem) {
+        const { filename, url } = memoryItem;
+        const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+
+        const [datetimePart, ...descParts] = nameWithoutExt.split("_");
+        const description = descParts.join("_").replace(/-/g, " ").trim();
+
+        const [day, month, year] = datetimePart.split("-");
+        const fullDate = new Date(`20${year}-${month}-${day}`);
+
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        const formattedDate = fullDate.toLocaleDateString("en-US", options);
+
+        return `
+    <div class="photo-card">
+      <div class="photo-inner">
+        <div class="photo-front">
+          <div
+            class="photo-image"
+            style="background-image: url('${url}')"
+          ></div>
+          <div class="photo-date">${formattedDate}</div>
+        </div>
+        <div class="photo-back">
+          <p>${description}</p>
+        </div>
+      </div>
+    </div>
+  `;
+      }
+
+      function renderMemoryCards(memoryItems) {
+        const memorySection = document.getElementById("memory-id");
+        if (!memorySection) {
+          console.error("No section with id 'memory' found.");
+          return;
         }
 
-        function toggleEnvelope() {
-            const envelope = document.querySelector('.envelope');
-            envelope.classList.toggle('open');
-        }
+        memorySection.innerHTML = `
+    <div class="memory-container">
+      ${memoryItems.map(parseMemoryItemToCard).join("\n")}
+    </div>
+  `;
+      }
+      const API_KEY = "AIzaSyAS8khPDtWSbw2Zy_06fzDLAgZW79m0mNk";
+      const FOLDER_ID = "1VQ3-SflvR1yemq-xmPJ9_IrG0K-fvypE";
+      const SHEET_ID =
+        "2PACX-1vQRmkfRqzjo_C5Fqb28_hm4gPl5HdnFzHmY5AssfuJ7JG9gILP87gxo7GN2xNabtu_qI9LVqmTjPu14";
 
-        // Confetti Animation
-        function startConfetti() {
-            const container = document.getElementById('confetti-container');
-            container.style.display = 'block';
-            container.innerHTML = '';
-            
-            // Create confetti pieces
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                confetti.style.backgroundColor = getRandomColor();
-                
-                // Random shapes
-                const shapes = ['circle', 'triangle', 'square'];
-                const shape = shapes[Math.floor(Math.random() * shapes.length)];
-                if (shape === 'circle') {
-                    confetti.style.borderRadius = '50%';
-                } else if (shape === 'triangle') {
-                    confetti.style.width = '0';
-                    confetti.style.height = '0';
-                    confetti.style.backgroundColor = 'transparent';
-                    confetti.style.borderLeft = '10px solid transparent';
-                    confetti.style.borderRight = '10px solid transparent';
-                    confetti.style.borderBottom = '20px solid ' + getRandomColor();
-                }
-                
-                container.appendChild(confetti);
+      function gapiLoaded() {
+        gapi.load("client", initializeGapiClient);
+      }
+
+      async function initializeGapiClient() {
+        await gapi.client.init({
+          apiKey: API_KEY,
+          discoveryDocs: [
+            "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
+          ],
+        });
+      }
+
+      // ✅ New function to fetch memory items (filename + image URL)
+      async function getMemoryItemsFromDrive() {
+        const response = await gapi.client.drive.files.list({
+          q: `'${FOLDER_ID}' in parents and mimeType contains 'image/' and trashed = false`,
+          fields: "files(id, name)",
+        });
+
+        const files = response.result.files;
+
+        const memoryItems = files
+          .map((file) => ({
+            filename: file.name,
+            url: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1800`,
+
+            date: extractDateFromFilename(file.name), // 👈 extract date
+          }))
+          .sort((a, b) => b.date - a.date);
+
+        return memoryItems;
+      }
+
+      // Example usage
+      async function renderMemorySection() {
+        const memoryItems = await getMemoryItemsFromDrive();
+        renderMemoryCards(memoryItems); // from previous answer
+      }
+
+      window.onload = async () => {
+        gapiLoaded();
+
+        // Wait until gapi is initialized
+        const waitUntilReady = () =>
+          new Promise((resolve) => {
+            const check = () => {
+              if (gapi.client && gapi.client.drive) resolve();
+              else setTimeout(check, 100);
+            };
+            check();
+          });
+
+        await waitUntilReady();
+        await initializeGapiClient();
+
+        // Finally render
+        renderMemorySection();
+        renderTogetherDays();
+      };
+      function renderTripTable(trips, containerId = "trip-table-container") {
+        const container = document.getElementById(containerId);
+
+        const table = document.createElement("table");
+        table.style.width = "100%";
+        table.style.borderCollapse = "collapse";
+        table.style.border = "3px solid var(--dark)";
+
+        const thead = document.createElement("thead");
+        thead.innerHTML = `
+    <tr style="background-color: var(--accent)">
+      <th style="padding: 10px; border: 2px solid var(--dark)">Date</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Place</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Location</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Attractions</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Who</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Photos</th>
+      <th style="padding: 10px; border: 2px solid var(--dark)">Note</th>
+    </tr>
+  `;
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+
+        trips.forEach((trip) => {
+          const tr = document.createElement("tr");
+
+          // Handle photo link as a clickable <a>
+          const photoCell = trip.photos
+            ? `<a href="${trip.photos}" target="_blank">View</a>`
+            : "";
+
+          tr.innerHTML = `
+      <td style="padding: 10px; border: 2px solid var(--dark)">${
+        trip.date || ""
+      }</td>
+      <td style="padding: 10px; border: 2px solid var(--dark)">${
+        trip.place || ""
+      }</td>
+      <td style="padding: 10px; border: 2px solid var(--dark)">${
+        trip.location || ""
+      }</td>
+
+      <td style="padding: 10px; border: 2px solid var(--dark)">${(
+        trip.attractions || ""
+      ).replace(/\n/g, "<br>")}</td>
+      <td style="padding: 10px; border: 2px solid var(--dark)">${
+        trip.who || ""
+      }</td>
+      <td style="padding: 10px; border: 2px solid var(--dark)">${photoCell}</td>
+               <td style="padding: 10px; border: 2px solid var(--dark)">${
+                 trip.note || ""
+               }</td>
+    `;
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+
+        container.innerHTML = ""; // Clear previous content
+        container.appendChild(table);
+      }
+      const csvUrl =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRmkfRqzjo_C5Fqb28_hm4gPl5HdnFzHmY5AssfuJ7JG9gILP87gxo7GN2xNabtu_qI9LVqmTjPu14/pub?output=csv";
+
+      function parseCsvToTrips(csvText) {
+        const results = Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          dynamicTyping: true, // converts "TRUE"/"FALSE" to booleans
+        });
+
+        const trips = results.data
+          .map((row) => {
+            const trip = {};
+            for (const key in row) {
+              trip[toCamelCase(key)] = row[key] || "";
             }
-            
-            // Clean up after animation completes
-            setTimeout(() => {
-                container.style.display = 'none';
-            }, 5000);
-        }
+            return trip;
+          })
+          .filter((trip) => trip.place || trip.location || trip.attractions);
 
-        function getRandomColor() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#FFD166', '#06D6A0', '#118AB2'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
+        return trips;
+      }
 
-        // Admin Section
-        function showAdminSection() {
-            showSection('admin');
-            document.getElementById('admin-password-section').style.display = 'block';
-            document.getElementById('admin-controls').style.display = 'none';
-        }
+      function toCamelCase(text) {
+        return text
+          .toLowerCase()
+          .replace(/\s+\(.*?\)/g, "") // Remove stuff in parentheses like "(if any)"
+          .replace(/\s+/g, " ")
+          .trim()
+          .replace(/\s(.)/g, (match, group1) => group1.toUpperCase());
+      }
+      fetch(csvUrl)
+        .then((res) => res.text())
+        .then((csvText) => {
+          const trips = parseCsvToTrips(csvText);
+          renderTripTable(trips); // your custom render function
+        });
 
-        function checkAdminPassword() {
-            const password = document.getElementById('admin-password-input').value;
-            if (password === 'adminpanel123') {
-                document.getElementById('admin-password-section').style.display = 'none';
-                document.getElementById('admin-controls').style.display = 'block';
-            } else {
-                alert('Incorrect admin password. Try again!');
-            }
-        }
+      function getDayCountSinceStart(startDateStr = "2025-01-01") {
+        const startDate = new Date(startDateStr);
+        const today = new Date();
 
-        function updateCounter(action) {
-            const input = document.getElementById('days-together-input');
-            let value = parseInt(input.value);
-            
-            if (action === 'plus') {
-                value++;
-            } else if (action === 'minus') {
-                value--;
-            }
-            
-            input.value = value;
-        }
+        // Set both to midnight to ignore time differences
+        startDate.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
 
-        function saveCounter() {
-            const value = document.getElementById('days-together-input').value;
-            document.getElementById('days-together').textContent = value;
-            document.getElementById('day-counter').innerHTML = value + ' Days Together - Love you <i class="fas fa-heart" style="color: red;"></i>';
-            alert('Counter updated successfully!');
-        }
+        const diffInMs = today - startDate;
+        const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 
-        function toggleSpecialDay() {
-            const isChecked = document.getElementById('special-day-toggle').checked;
-            document.getElementById('special-day-title').style.display = isChecked ? 'block' : 'none';
-        }
+        return diffInDays;
+      }
 
-        // Trips Data Reload
-        function reloadTripsData() {
-            // Simulate loading data
-            const reloadBtn = document.querySelector('.reload-btn');
-            reloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-            
-            setTimeout(() => {
-                reloadBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Reload Data';
-                alert('Trip data reloaded successfully!');
-            }, 1500);
-        }
-
-        // Show Past Gifts
-        function showPastGift(date) {
-            alert('This feature will display the gift from ' + date + '. This feature is coming soon!');
-        }
-
-        // Countdown Timer
-        function updateCountdown() {
-            const targetDate = new Date('February 14, 2026').getTime();
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-            
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.`
+      function renderTogetherDays() {
+        const togetherDays = getDayCountSinceStart();
+        document.querySelectorAll("#together-count").forEach((el) => {
+          el.innerText = togetherDays;
+        });
+      }
+    </script>
+  </body>
+</html>

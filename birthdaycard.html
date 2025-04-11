@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Card</title>
+    <style>
+      /* Card styles */
+      .birthdayCard_1 {
+        position: relative;
+        width: 90%;
+        max-width: 350px;
+        height: 500px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transform: perspective(2500px);
+        transition: all 0.8s ease;
+      }
+
+      .cardFront_1 {
+        position: relative;
+        background-color: #f8f9fa;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform-origin: left;
+        box-shadow: inset 50px 5px 50px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.8s ease;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+      }
+
+      .cardInside_1 {
+        position: absolute;
+        background-color: #fff9f9;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        box-shadow: inset 50px 5px 50px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .cardInsideLetter_1 {
+        margin-top: 20px;
+        height: calc(100% - 40px);
+        overflow-y: auto;
+      }
+
+      .happy_1 {
+        font-family: "Pacifico", cursive;
+        text-align: center;
+        margin: 20px 0;
+        color: #6d6875;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1.5em;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 5;
+      }
+
+      p {
+        color: #333;
+        font-size: 0.9em;
+        line-height: 1.6;
+        margin: 10px 0;
+      }
+
+      .name_1 {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .birthdayCard_1:hover {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard_1:hover .cardFront_1 {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard_1:hover .happy_1 {
+        visibility: hidden;
+      }
+
+      /* Landscape elements */
+      .grass_1 {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 90px;
+        background: linear-gradient(to bottom, #7cba6b, #5d9c4a);
+        z-index: 2;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+
+      .grass-blades_1 {
+        position: absolute;
+        top: -15px;
+        width: 100%;
+        height: 20px;
+        background-image: linear-gradient(
+            45deg,
+            transparent 45%,
+            #5d9c4a 45%,
+            #5d9c4a 55%,
+            transparent 55%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 45%,
+            #5d9c4a 45%,
+            #5d9c4a 55%,
+            transparent 55%
+          );
+        background-size: 20px 20px;
+      }
+
+      .fence_1 {
+        position: absolute;
+        bottom: 90px;
+        width: 100%;
+        height: 40px;
+        background: linear-gradient(
+          90deg,
+          #deb887 0%,
+          #deb887 10%,
+          #f0d8b0 10%,
+          #f0d8b0 20%,
+          #deb887 20%,
+          #deb887 30%,
+          #f0d8b0 30%,
+          #f0d8b0 40%,
+          #deb887 40%,
+          #deb887 50%,
+          #f0d8b0 50%,
+          #f0d8b0 60%,
+          #deb887 60%,
+          #deb887 70%,
+          #f0d8b0 70%,
+          #f0d8b0 80%,
+          #deb887 80%,
+          #deb887 90%,
+          #f0d8b0 90%,
+          #f0d8b0 100%
+        );
+        z-index: 1;
+      }
+
+      .fence-posts_1 {
+        position: absolute;
+        bottom: 90px;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+        z-index: 1;
+      }
+
+      .fence-post_1 {
+        width: 8px;
+        height: 60px;
+        background: linear-gradient(to bottom, #8b4513, #a0522d);
+        border-radius: 3px;
+      }
+
+      .sun_1 {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle at 30% 30%, #ffde59, #ff914d);
+        border-radius: 50%;
+        box-shadow: 0 0 40px #ffde59;
+        z-index: 0;
+      }
+
+      .sun-rays_1 {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(
+          circle,
+          transparent 50%,
+          rgba(255, 222, 89, 0.3) 70%
+        );
+        border-radius: 50%;
+        animation: pulse_1 2s infinite alternate;
+      }
+
+      @keyframes pulse_1 {
+        0% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(1.2);
+          opacity: 0.1;
+        }
+      }
+
+      /* Your Sheep Design - Adapted for the card */
+      .sheep-container_1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        z-index: 3;
+        transform: translateY(20px);
+      }
+
+      .sheep_1 {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+        transform: scale(0.9);
+      }
+
+      .legs_1 {
+        position: absolute;
+        top: 180px;
+        left: 100px;
+        z-index: 4;
+      }
+
+      .leg_1 {
+        background: #000;
+        width: 18px;
+        height: 55px;
+        border-radius: 7px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        transform-origin: top left;
+      }
+
+      .leg-1_1 {
+        transform: rotate(10deg);
+        left: 20px;
+        animation-name: walk-leg-front-cycle_1;
+      }
+      .leg-2_1 {
+        transform: rotate(-10deg);
+        left: 40px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle_1;
+      }
+      .leg-3_1 {
+        transform: rotate(10deg);
+        left: 95px;
+        animation-name: walk-leg-front-cycle_1;
+      }
+      .leg-4_1 {
+        transform: rotate(-10deg);
+        left: 120px;
+        background: #444;
+        z-index: 0;
+        animation-name: walk-leg-back-cycle_1;
+      }
+
+      .piece-of-wool_1 {
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+
+      .wool-shadowlayer_1 .piece-of-wool_1 {
+        background: #eee;
+        z-index: 1;
+        margin-bottom: -8px;
+      }
+
+      .wool_1 {
+        width: 160px;
+        height: 140px;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+        z-index: 3;
+      }
+
+      .piece-of-wool-1_1 {
+        width: 160px;
+        height: 140px;
+        border-radius: 160px / 140px;
+        position: relative;
+        z-index: 0;
+      }
+      .piece-of-wool-2_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        top: 0;
+        left: -5px;
+      }
+      .piece-of-wool-3_1 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        top: -20px;
+        left: 75px;
+      }
+      .piece-of-wool-4_1 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: -15px;
+        left: 25px;
+      }
+      .piece-of-wool-5_1 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: -6px;
+        left: 40px;
+      }
+      .piece-of-wool-6_1 {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        bottom: -2px;
+        left: 50px;
+      }
+      .piece-of-wool-7_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+      }
+      .piece-of-wool-8_1 {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        bottom: 10px;
+        left: 100px;
+      }
+      .piece-of-wool-9_1 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        bottom: 35px;
+        left: 134px;
+      }
+      .piece-of-wool-10_1 {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        top: 0;
+        left: 106px;
+      }
+
+      .head_1 {
+        position: absolute;
+        left: 32px;
+        top: 30px;
+        z-index: 4;
+        width: 100px;
+        height: 130px;
+        animation: head-cycle_1 20s infinite alternate;
+      }
+
+      .head-face_1,
+      .head-shadow_1 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100px;
+        height: 130px;
+        border-radius: 95px / 130px;
+        z-index: 1;
+      }
+
+      .head-shadow_1 {
+        background: #eee;
+        margin: 3px 0 0 5px;
+        z-index: 0;
+      }
+
+      .head-face-front_1 {
+        width: 85px;
+        height: 110px;
+        border-radius: 85px / 110px;
+        position: absolute;
+        left: 50%;
+        margin-left: -42.5px;
+        top: 0;
+        background: #fff;
+        z-index: 3;
+      }
+
+      .ear_1 {
+        background: #000;
+        width: 50px;
+        height: 60px;
+        border-radius: 50px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        top: 15px;
+        transform-origin: top left;
+      }
+
+      .ear-1_1 {
+        transform: rotate(75deg);
+        animation: ear-1-cycle_1 20s infinite;
+      }
+
+      .ear-2_1 {
+        transform: rotate(5deg);
+        left: 65px;
+        animation: ear-2-cycle_1 20s infinite;
+      }
+
+      .ear-shadow_1 {
+        background: #eee;
+        margin: 6px 0 0 6px;
+        z-index: 0;
+      }
+
+      .eye_1 {
+        width: 15px;
+        height: 22px;
+        border-radius: 15px / 22px;
+        background: #000;
+        position: absolute;
+        top: 35px;
+        z-index: 5;
+        animation: eye-blink-cycle_1 0.3s 5s 2 alternate;
+      }
+
+      .eye-1_1 {
+        left: 30px;
+      }
+
+      .eye-2_1 {
+        right: 30px;
+      }
+
+      .glow_1 {
+        width: 5px;
+        height: 7px;
+        border-radius: 5px / 7px;
+        background: #fff;
+        position: absolute;
+        left: 47%;
+        top: 20%;
+        animation: eye-blink-glow-cycle_1 0.3s 5s 2 alternate;
+      }
+
+      .wool-head_1 {
+        width: 100px;
+        position: absolute;
+        left: 0;
+        top: -4px;
+        z-index: 4;
+      }
+
+      .wool-head_1 .piece-of-wool-1_1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 5px;
+      }
+
+      .wool-head_1 .piece-of-wool-2_1 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: -10px;
+        left: 25px;
+      }
+
+      .wool-head_1 .piece-of-wool-3_1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 0;
+        left: 55px;
+      }
+
+      .wool-shadowlayer_1 .piece-of-wool_1 {
+        margin-top: 4px;
+        margin-left: 4px;
+        margin-bottom: 0;
+      }
+
+      .caption_1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        font-size: 1.5em;
+        font-family: "Pacifico", cursive;
+        color: #6d6875;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        z-index: 5;
+      }
+
+      /* Sheep animations */
+      @keyframes walk-leg-back-cycle_1 {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg) translateX(-20px);
+        }
+      }
+
+      @keyframes walk-leg-front-cycle_1 {
+        0% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-10deg) translateX(20px);
+        }
+      }
+
+      @keyframes head-cycle_1 {
+        40% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @keyframes ear-1-cycle_1 {
+        0%,
+        10%,
+        20%,
+        40%,
+        50%,
+        100% {
+          transform: rotate(75deg);
+        }
+        5%,
+        45% {
+          transform: rotate(85deg);
+        }
+        15% {
+          transform: rotate(80deg);
+        }
+      }
+
+      @keyframes ear-2-cycle_1 {
+        0%,
+        10%,
+        20%,
+        30%,
+        40%,
+        50%,
+        70%,
+        80%,
+        100% {
+          transform: rotate(5deg);
+        }
+        15%,
+        75% {
+          transform: rotate(-5deg);
+        }
+        45% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes eye-blink-cycle_1 {
+        100% {
+          height: 2px;
+          border-radius: 0;
+          margin-top: 5px;
+        }
+      }
+
+      @keyframes eye-blink-glow-cycle_1 {
+        100% {
+          height: 0;
+          border-radius: 0;
+        }
+      }
+
+      /* Floating animation for the sheep */
+      @keyframes float_1 {
+        0%,
+        100% {
+          transform: translateY(0) scale(0.9);
+        }
+        50% {
+          transform: translateY(-10px) scale(0.9);
+        }
+      }
+
+      .sheep_1 {
+        animation: float_1 3s ease-in-out infinite;
+      }
+
+      /* Confetti effect */
+      .confetti_1 {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 500px) {
+        .birthdayCard_1 {
+          height: 450px;
+        }
+
+        .sheep_1 {
+          transform: scale(0.7);
+        }
+
+        .happy_1 {
+          font-size: 1.2em;
+        }
+
+        p_1 {
+          font-size: 0.8em;
+        }
+
+        .sun_1 {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+
+        .sun-rays_1 {
+          top: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      /* Touch support for mobile */
+      .birthdayCard.touched {
+        transform: perspective(2500px) rotate(5deg);
+        box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.1),
+          0 10px 100px rgba(0, 0, 0, 0.3);
+      }
+
+      .birthdayCard.touched .cardFront {
+        transform: rotateY(-160deg);
+      }
+
+      .birthdayCard.touched .happy {
+        visibility: hidden;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="birthdayCard_1" id="birthdayCard_1">
+      <div class="cardFront_1">
+        <div class="sun_1"></div>
+        <div class="sun-rays_1"></div>
+        <h3 class="happy_1">Happy Birthday Almond!</h3>
+        <div class="sheep-container_1">
+          <div class="sheep_1">
+            <div class="legs_1">
+              <div class="leg_1 leg-1_1"></div>
+              <div class="leg_1 leg-2_1"></div>
+              <div class="leg_1 leg-3_1"></div>
+              <div class="leg_1 leg-4_1"></div>
+            </div>
+            <div class="wool_1">
+              <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+              <div class="wool-shadowlayer_1">
+                <div class="piece-of-wool_1 piece-of-wool-5_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-6_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-7_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-8_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-9_1"></div>
+              </div>
+              <div class="wool-toplayer_1">
+                <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-4_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-5_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-6_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-7_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-8_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-9_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-10_1"></div>
+              </div>
+            </div>
+            <div class="head_1">
+              <div class="head-face-front_1"></div>
+              <div class="head-face_1"></div>
+              <div class="head-shadow_1"></div>
+              <div class="ear_1 ear-1_1"></div>
+              <div class="ear_1 ear-2_1"></div>
+              <div class="ear_1 ear-2_1 ear-shadow_1"></div>
+              <div class="eye_1 eye-1_1">
+                <div class="glow_1"></div>
+              </div>
+              <div class="eye_1 eye-2_1">
+                <div class="glow_1"></div>
+              </div>
+              <div class="wool-head_1">
+                <div class="wool-shadowlayer_1">
+                  <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+                  <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                  <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
+                </div>
+                <div class="piece-of-wool_1 piece-of-wool-1_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-2_1"></div>
+                <div class="piece-of-wool_1 piece-of-wool-3_1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fence-posts_1">
+          <div class="fence-post_1"></div>
+          <div class="fence-post_1"></div>
+          <div class="fence-post_1"></div>
+          <div class="fence-post_1"></div>
+          <div class="fence-post_1"></div>
+        </div>
+        <div class="fence_1"></div>
+        <div class="grass_1">
+          <div class="grass-blades_1"></div>
+        </div>
+        <div class="caption_1">Baa Baa Happy Birthday!</div>
+      </div>
+      <div class="cardInside_1">
+        <div class="cardInsideLetter_1">
+          <p>test</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add touch support for mobile devices
+      const card = document.getElementById("birthdayCard");
+
+      card.addEventListener("click", function () {
+        this.classList.toggle("touched");
+        createConfetti();
+      });
+
+      // Add confetti effect
+      function createConfetti() {
+        const colors = [
+          "#ff6b6b",
+          "#ff8e8e",
+          "#ffb3b3",
+          "#ffd8d8",
+          "#a8edea",
+          "#fed6e3",
+        ];
+        const cardFront = document.querySelector(".cardFront");
+
+        // Remove existing confetti
+        const existingConfetti = document.querySelectorAll(".confetti");
+        existingConfetti.forEach((el) => el.remove());
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + "%";
+          confetti.style.top = Math.random() * 100 + "%";
+          confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+          confetti.style.width = Math.random() * 10 + 5 + "px";
+          confetti.style.height = Math.random() * 10 + 5 + "px";
+          confetti.style.opacity = "0.8";
+          confetti.style.position = "absolute";
+          confetti.style.borderRadius = "50%";
+
+          cardFront.appendChild(confetti);
+
+          // Animate confetti
+          setTimeout(() => {
+            confetti.style.transition = "all 1s ease-out";
+            confetti.style.opacity = "0";
+            confetti.style.transform =
+              "translateY(100px) rotate(" + Math.random() * 360 + "deg)";
+
+            // Remove after animation
+            setTimeout(() => {
+              confetti.remove();
+            }, 1000);
+          }, Math.random() * 1000);
+        }
+      }
+
+      // Make card interactive on mobile
+      let touchStartX = 0;
+
+      card.addEventListener(
+        "touchstart",
+        function (e) {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        false
+      );
+
+      card.addEventListener(
+        "touchend",
+        function (e) {
+          const touchEndX = e.changedTouches[0].screenX;
+          if (Math.abs(touchEndX - touchStartX) < 10) {
+            // It's a tap, not a swipe
+            this.classList.toggle("touched");
+            createConfetti();
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
